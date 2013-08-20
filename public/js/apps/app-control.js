@@ -360,13 +360,11 @@ Streams.app_control = {
 			}
 			if(Streams.app_control.accordionsOpen > Streams.app_control.accordionLimit){
 				var accToClose = Streams.app_control.openAccordions.shift()
-				console.log(accToClose)
-				
+				console.log(accToClose)				
 				console.log("Too Many Open")
-				console.log($("#accordion #" + accToClose))
+				console.log($("#" + accToClose))
 				
 				var accordions = $("#accordion li");
-				console.log(accordions);
 				for(var i = accordions.length;i > 0; i--){
 					if($(accordions[i]).attr("state") == "open"){
 						$(accordions[i]).attr("state", "closed");
