@@ -1,0 +1,40 @@
+{
+
+  "model_step": "streamtemp",
+  "pre_step": ["climate"],
+  "model_description": "non-linear regression model, written by yoichiro and austin (?)",
+
+  "userid": {
+    "required": 1,
+    "description": "Always required, to be included in all config files."
+  },
+  "runid": {
+    "required": 1,
+    "description": "Always required, to be included in all config files."
+  },
+  "basinid": {
+    "required": 1,
+    "description": "NHDplus featureid or name of preset basin (i.e. west_brook"
+  },
+  "rscript": {
+    "required": 1,
+    "description": "Name of the script that this config file is for. Always required, to be included in all config files."
+  },
+
+  "coef_str": {
+    "required": 1,
+    "description": "hard-coded coefficients for stream temp data. saved as 1-d array. (until I can figure out 2-d arrays in json.)"
+  },
+  "coef_cols": {
+    "required": 1,
+    "description": "number of columns of the matrix the hard-coded coefficients should be parsed into. (until I can figure out 2-d arrays in json.)"
+  },
+
+  "pre_run": {
+    "required":1,
+    "description": "should be a climate run w/ air temp"
+  }
+
+
+
+}

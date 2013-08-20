@@ -1,0 +1,7 @@
+{
+  "name": "config",
+  "version": "0.0.1",
+  "author": "Tim; Kun",
+  "description": "a library for configuration information.",
+  "main": "./config.js"
+}

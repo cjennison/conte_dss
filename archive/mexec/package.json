@@ -1,0 +1,7 @@
+{
+  "name": "mexec",
+  "version": "0.0.1",
+  "author": "Kun Tu",
+  "description": "a library for representing mexec.",
+  "main": "./batchrun.js"
+}

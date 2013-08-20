@@ -1,0 +1,79 @@
+#inputWrapper{
+	-o-transition: all 1s ease-out;
+	-ms-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+	
+	position:absolute;
+	height:100%;
+	width:100%;
+	top:0%;
+}
+
+
+
+#outputWrapper{
+	-o-transition: all 1s ease-out;
+	-ms-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+	
+	position:absolute;
+	height:100%;
+	width:100%;
+	top:100%;
+	
+}
+
+#graphWrapper{
+	-o-transition: all 1s ease-out;
+	-ms-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+	
+	position:absolute;
+	height:84%;
+	width:100%;
+	top:200%;
+	left:12%
+	z-index:0;
+	
+}
+
+#graph_container {
+	width:87%;
+	height:100%;
+	pointer-events:none;
+}
+
+
+#navigation{
+	-o-transition: all .4s ease-out;
+	-ms-transition: all .4s ease-out;
+	-moz-transition: all .4s ease-out;
+	-webkit-transition: all .4s ease-out;
+	position:absolute;
+	width:200px;
+	height:250px;
+	float:left;
+	background:url("../images/navWindow.png");
+	top:35px;
+	left:-162px;
+	z-index:10000;
+}
+
+#navigation:hover{
+	left:0px;
+}
+
+
+#navigation ul{list-style-type: none;}
+#navigation ul li{
+	margin-top:30px;
+	margin-left:-34px;
+}
+
+.navButton{
+	width:150px;
+	height:40px;
+}

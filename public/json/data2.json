@@ -1,0 +1,98 @@
+
+{
+ "name": "West Brook basin",
+ "basin_id": "sjgaljkf not sure if it's basinID or basin_id, etc",
+ "step":"basin",
+ "children": [
+  
+  {
+   "name": "Precipitation up 10%",
+   "runID": "sdfjksldfkj",
+   "step": "climate",
+   "children": [
+    {
+		"name": "Low development scenario",
+		"runID": "oihyodifb",
+		"step": "land",
+		"children": [
+		{
+			"name": "Regular Stream Flow", 
+			"runID": "vcwr",
+			"step": "flow",
+			"children": [
+			{
+				"name": "Stream Temperature",
+				"runID": "cvbs",
+				"step": "streamtemp",
+				"children": [
+				{
+					"name": "West Brook trout IPM",
+					"runID": "cepofiuwieo",
+					"step": "population"
+				},
+				{
+					"name": "West Brook salmon IPM",
+					"runID": "sdgwegf",
+					"step": "population"
+				},
+				{
+					"name": "West Brook Dail-Madsen",
+					"runID": "cepofiuwieo",
+					"step": "population"
+					
+				}
+				]
+			}
+			]
+		}
+		]
+	}
+	]
+  },
+  
+  
+  
+  {
+   "name": "Precipitation down 10%",
+   "runID": "sdfjksldfkj",
+   "step": "climate",
+   "children": [
+    {
+		"name": "Low development scenario",
+		"runID": "oihyodifb",
+		"step": "land",
+		"children": [
+		{
+			"name": "Stream Flow", 
+			"runID": "rhtsrg",
+			"step": "flow",
+			"children": [
+			{
+				"name": "Stream Temperature",
+				"children": [
+				{
+					"name": "West Brook trout IPM",
+					"runID": "ddfhsg",
+					"step": "population"
+				},
+				{
+					"name": "West Brook salmon IPM",
+					"runID": "nwae",
+					"step": "population"
+				},
+				{
+					"name": "West Brook Dail-Madsen",
+					"runID": "cvbsrfgrw",
+					"step": "population"
+				}
+				]
+			}
+			]
+		}
+     ]
+    }
+   ]
+  }
+        
+ ]
+}

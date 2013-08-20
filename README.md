@@ -1,4 +1,4 @@
-conte_dss
-=========
+USGS_CONTE
+==========
 
-The USGS Conte DSS hosted by the Ecology Department
+A repository for the United States Geological Survey Silvio Conte Research Laboratory

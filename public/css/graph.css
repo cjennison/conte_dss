@@ -1,0 +1,125 @@
+.graphDiv div.bar {
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				display:inline-block;
+				width:20px;
+				height:75px; /* to be overriden */
+				margin-right: 2px;
+				background-color:teal;
+				
+				cursor:pointer;
+			}
+			
+			.graphDiv div.bar:hover{
+				background-color:red;
+			}
+			
+			
+			
+			
+			.graphDiv .point{
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				cursor:pointer;
+			}
+			
+			.graphDiv circle:hover{
+				r:20;
+			}
+			
+			.graphDiv .axis path, .graphDiv .axis line{
+				fill:none;
+				stroke:black;
+				/*shape-rendering: crispEdges; */
+			}
+			
+			.graphDiv .y.axis line{
+				opacity:1;
+				stroke-dasharray: 3px;
+				stroke: rgb(202, 202, 202);
+			}
+			
+			.graphDiv .yLabel{
+				font-size: 24px;
+					position: relative;
+					font-family: 'Oswald', sans-serif;
+					text-align: center;
+					transform:rotate(-90deg);
+				-ms-transform:rotate(-90deg); /* IE 9 */
+				-webkit-transform:rotate(-90deg); /* Safari and Chrome */
+			}
+			
+			.graphDiv .xLabel{
+				bottom:30px;
+				font-size: 24px;
+				position: relative;
+				font-family: 'Oswald', sans-serif;
+				text-align: center;
+			}
+			
+			.graphDiv .axis text{
+				font-family: 'Oswald', sans-serif;
+				font-size:14px;
+				fill:olive;
+			}
+			
+			.graphDiv p{
+				color:olive;
+			}
+			
+			.graphDiv svg{
+				
+			}
+			
+			.graphDiv .label{
+				font-size:17px;
+				font-family:Helvetica;
+			}
+			.graphDiv .title{
+				font-size: 28px;
+				left: 67px;
+				position: relative;
+				color: rgba(50,50,50,.5);
+				font-family: 'Oswald', sans-serif;
+			}
+			
+			.graphDiv .toggle{
+				position: relative;
+				left: 643px;
+				top: 40px;
+				height: auto;
+				width: 300px;
+			}
+			
+			.graphDiv .toggle ul{
+				list-style-type:none;
+				width: 300px;
+			}
+			
+			.graphDiv .ser-label{
+				margin-left: 20px;
+				
+			}
+			
+			.graphDiv canvas{
+				position: absolute;
+				margin-top: 4px;
+				left:auto;
+				top:auto;
+			}
+			
+			.graphDiv .data-popup{
+				position: absolute;
+				background: blueviolet;
+				border-radius: 5px;
+				font-family: Helvetica;
+				color: white;			
+			}
+			
+			.graphDiv canvas{
+				cursor:pointer;
+			}

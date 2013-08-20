@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    <script type="text/javascript"
+      src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDYj1IOAdgDbXnWadcslxvxbR_NjWn1X9g&sensor=false">
+    </script>
+    <script type="text/javascript">
+      function initialize() {
+        var server = {
+          host: 'http://streamstatsags.cr.usgs.gov',
+          path: '/ss_ws_92/Service.asmx/getStreamstats?x=-72.43307&y=42.39019&inCRS=EPSG:6.6:4326&StateNameAbbr=MA&getBasinChars=C&getFlowStats=C&getGeometry=KML&downloadFeature=False&clientID=UT%20Demo'
+        };
+
+        var myOptions = {
+          center: new google.maps.LatLng(42.39019, -72.43307),
+          zoom: 5,
+          mapTypeId: google.maps.MapTypeId.TERRAIN
+//          center: new google.maps.LatLng(-34.397, 150.644),
+//          center: new google.maps.LatLng(42.487, -72.187),
+//          center: new google.maps.LatLng(42.37915225958498, -72.47167921066244);
+//          center: new google.maps.LatLng(-111.1563, 39.4725),
+//          zoom: 8,
+//          mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        var map = new google.maps.Map(document.getElementById("map_canvas"),
+            myOptions);
+
+      var geoRssLayer = new google.maps.KmlLayer('http://elnux1.cs.umass.edu:3000/kml/streamsMA.kml');
+      console.log('Setting geoRssLayer');
+      geoRssLayer.setMap(map);
+
+
+      }
+    </script>
+  </head>
+  <body onload="initialize()">
+    <div id="map_canvas" style="width:100%; height:100%"></div>
+  </body>
+</html>

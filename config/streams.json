@@ -1,0 +1,18 @@
+{
+  "port": 1337,
+
+	"RScript":
+    {
+      "Home"      : "/home/austin/WebStuff",
+      "FromImages": "/home/austin/WebStuff/Images",
+      "ToImages"  : "/home/node.js/streams/public/images/models"
+    },
+
+  "DataDir"   : "/home/node.js/data",
+
+  "ModelsDir" : "/home/node.js/models",
+
+  "BasinsDir" : "/home/node.js/basins",
+
+  "UsersDir"  : "/home/node.js/users"
+}

@@ -1,0 +1,42 @@
+{
+	"webInfo": {
+		"climate": {
+			"flag": true,
+			"scriptName": "weather_generator",
+			"runid": "f7d321e9-a00c-4485-9042-4f1b5444d4d3",
+			"basin_id": "west_brook",
+			"preceding": {
+
+			},
+			"precip_mean_y1": 0,
+			"precip_mean_yn": 0,
+			"precip_var_y1": 0,
+			"precip_var_yn": 0,
+			"temp_mean_y1": 0,
+			"temp_mean_yn": 0,
+			"n_years": 30,
+	
+			"wet_threshold":0
+
+		},
+
+		"land":{
+			"flag":true,
+			"basin_id": "west_brook",
+			"scriptName": "landoo",
+			"preceding": {
+				"climate":"weather_generator"
+			}
+		},
+		
+		"flow":{
+			"flag":true,
+			"basin_id": "west_brook",
+			"scriptName": "StreamFlowModel",
+			"preceding": {
+				"land":"landoo"
+			}
+		}
+		
+	}
+}

@@ -1,0 +1,523 @@
+<% include head %>
+
+
+<div id="backgroundGraphic" >
+</div>
+
+
+<div class="panelBackground" style="opacity:1">
+
+</div>
+<div id="logos"><a href="/about" target="_blank">
+<ul>
+  <li vertical-align: middle><p style="width:100px"><b>North Atlantic Landscape Conservation Cooperative</b></p></li>
+  <li vertical-align: middle><img src="images/nalcc_ltblue.png" /></li>
+  <li vertical-align: middle><img src="images/logo_usgs.png" /></li>
+  <li vertical-align: middle><img src="images/umass_logo.png" /></li>
+  <li vertical-align: middle><span id="beta">alpha version</span></li>
+  </ul>
+  </a>
+</div>
+
+
+
+<div id="inputWrapper">
+	
+	<div id="map">
+	</div>
+	
+	<!--
+	<div id="user">
+	  <p>Logged in as <span class="username"><%= user %></span></p>
+	  <a href="../login" style="margin-bottom:-40px">Sign Out</a>
+	</div>
+	-->
+	
+	<div id="basinSelection">
+		<ul class="basinSelector">
+	
+		</ul>
+	</div>
+	
+	
+	<div id="steps-controls">
+		<ul id="accordion">
+			
+			
+			
+			<li id="acc7" class="accord-li" state="closed">
+				<div class="toggle"><span class="title">Fish Models</span></div>
+				<div class="content">
+				
+					<div id="fish-models-app">
+					<div class="custom-ui-icon"></div>
+					
+					<div id="loader">
+					    <div id="message"></div>
+					  </div>
+					  					  <a class="createnew" href="#">Create New</a>
+					  
+	         		 <div class="runTypeSelect">
+						  <select name="runType" class="selectRun">
+						  	<option>Select a Completed Run</option>
+						  	<option disabled="disabled">No Existing Runs Found</option>
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					  
+					  <p style="float:left;width:50px;margin-left:18px"> Model: </p>
+					  <div class="styledSelect">
+						 <select name="fishpopulation" class="selectRun">
+						
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					   <div class="app_content">
+				           
+							   
+							<div id="salmon_IPM" class="app active">
+							   		 <center>
+							   		 Stocking Stage:
+							   		 <div class="styledSelect">
+							   		 	 <select name="stockingstage" class="selectRun">
+						 				 <option value="Fry">Fry</option>
+						 				 </select>
+						 				  <div class="selectImage"></div>
+							   		 </div>
+							   		 </center>
+			             			<p>Stocking Count: <span class="countNumber">50</span>
+			             			<div class="countslider1"></div>
+							</div>
+ 							<div id="WB_matrix_trout" class="app">
+							   
+							</div>
+							   
+				       </div>
+					  <br>
+					  <p>
+					  <div class="runModel">
+					  		<input class="runInput" value=" Enter a run name"></input><br>
+					    	<a id="run" href="#">Run with these settings</a>
+					  	</div>
+					
+	         		
+	
+		         
+					</div>				
+				</div>
+			</li>
+			
+			<li id="acc6" class="accord-li" state="closed">
+				<div class="toggle"><span class="title">Stream Temperature</span></div>
+				<div class="content">
+				
+					<div id="streamtemp-flow-app">
+										<div class="custom-ui-icon"></div>
+					
+					<div id="loader">
+					    <div id="message"></div>
+					  </div>
+					  					  <a class="createnew" href="#">Create New</a>
+					  
+						 <div class="runTypeSelect">
+						  <select name="runType" class="selectRun">
+						  	<option>Select a Completed Run</option>
+						  	<option disabled="disabled">No Existing Runs Found</option>
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					  <p style="float:left;width:50px;margin-left:18px"> Model: </p>
+					 <div class="styledSelect">
+						 <select name="streamtemp" class="selectRun">
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					    <div class="app_content">
+				            
+				       </div>
+					  <br>
+					  <p>
+					  <div class="runModel">
+					  		<input class="runInput" value=" Enter a run name"></input><br>
+					    	<a id="run" href="#">Run with these settings</a>
+					  	</div>
+					</div>
+					
+					
+				</div>
+			</li>
+			
+			<li id="acc5" state="closed" class="accord-li">
+				<div class="toggle"><span class="title">Stream Flow Models</span></div>
+				<div class="content">
+					<div id="environmental-models-app">
+										<div class="custom-ui-icon"></div>
+					
+					<div id="loader">
+					    <div id="message"></div>
+					  </div>
+					  					  <a class="createnew" href="#">Create New</a>
+					  
+					 <div class="runTypeSelect">
+						  <select name="runType" class="selectRun">
+						  	<option>Select a Completed Run</option>
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					   <p style="float:left;width:50px;margin-left:18px"> Model: </p>
+					  <div class="styledSelect">
+						 <select name="streamflow" class="selectRun">
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					   <div class="app_content">
+				            
+				       </div>
+				        <div class="runModel" style="margin-top:50px">
+					  		<input type="text" class="runInput" value=" Enter a run name" ></input><br>
+					    	<a id="run" href="#">Run with these settings</a>
+					  	</div>
+					</div>				
+				</div>
+			</li>
+			<li id="acc4" state="closed" class="accord-li">
+				<div class="toggle"><span class="title">Land Use Models</span></div>
+				<div class="content">
+					<div id="land-use-models-app">
+										<div class="custom-ui-icon"></div>
+					
+					<div id="loader">
+					    <div id="message"></div>
+					  </div>
+					  					  <a class="createnew" href="#">Create New</a>
+					  
+					 <div class="runTypeSelect">
+						  <select name="runType" class="selectRun">
+						  	<option>Select a Completed Run</option>
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					  <p style="float:left;width:50px;margin-left:18px"> Model: </p>
+					  <div class="styledSelect">
+						 <select name="land" class="selectRun">
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					  <div class="app_content">
+					  Emissions <div class="styledSelect" id="emissions" style="left:50px">
+						 <select name="land" class="emissionsModel" >
+						  <option value="A2">Higher CO2 Levels</option>
+						  <option value="A1b">Middle CO2 Levels</option>
+						  <option value="B1">Lower CO2 Levels</option>
+					  
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					  <!-- No Longer in Use
+			             <p>Riparian cover (% change): <span class="riparianNumber">50</span>%
+			             <div class="riparianslider1"></div>
+			             <p>Impervious surface area (% change): <span class="surfaceNumber">50</span>%
+			             <div class="surfaceslider1"></div>
+				     	 </p>
+				     	-->
+				     </div>
+				     <div class="runModel" style="margin-top:50px">
+					  		<input type="text" class="runInput" value=" Enter a run name" ></input><br>
+					    	<a id="run" href="#">Run with these settings</a>
+					  	</div>
+				</div>
+				</div>
+			</li>
+			<li id="acc3" state="open" class="accord-li">
+				<div class="toggle"> <span class="title">Climate and Precipitation Models</span></div>
+				<div class="content">
+					<div id="weather-models-app">
+										<div class="custom-ui-icon"></div>
+					  <div id="loader">
+					    <div id="message"></div>
+					  </div>
+					  <a class="createnew" href="#">Create New</a>
+					  <div class="runTypeSelect">
+					  	         		 	
+					  
+						  <select name="runType" class="selectRun">
+						  	<option>Select a Completed Run</option>
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					  <p style="float:left;width:50px;margin-left:18px"> Model: </p>
+					 <div class="styledSelect">
+						 <select name="weathertype" class="selectRun">
+						 						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+					  
+					 	<div class="app_content">
+								<div id="weather_generator" class="app active" style="margin-top:-22px">								  
+								    <div id="precip01"></div>
+								    <div id="graphcontainer1"> </div>								  
+								    <div id="graphcontainer2" style="margin-top:19px;"> </div>
+								</div>
+							  <div id="baseline_shift" class="app" style="margin-top:-22px">
+							  </p>				   
+								    </p>
+								    <div id="precip01"></div>
+								    <div id="baselineHistoric_graphcontainer1"> </div>
+								    
+				
+								    <div id="baselineHistoric_graphcontainer2" style="margin-top:19px;"> </div>
+								  </p>
+								  <p>
+							  </div>
+							   <div id="baseline_historic" class="app">
+							   
+							   </div>
+							    <div id="gcm_downscaled" class="app">
+							   
+							   </div>
+							   <div id="temp_extreme" class="app">
+							   
+							   </div>
+							   <div id="drought_extreme" class="app">
+							   
+							   </div>
+					  </div>
+					  	<div class="runModel">
+					  		<input type="text" class="runInput" value=" Enter a run name" ></input><br>
+					    	<a id="run" href="#">Run with these settings</a>
+					  	</div>
+					  </p>
+					</div>
+				</div>
+			</li>
+			<li id="acc2" state="closed" class="accord-li">
+				<div class="toggle"><span class="title">Barriers</span></div>
+				<div class="content">
+					<div id="barriers-app" class="application" >
+						<div class="custom-ui-icon"></div>
+						 <a class="createnew" href="#">Create New</a>
+					 	 <div class="runTypeSelect">
+						 	 <select name="runType" class="selectRun">
+						 	 	<option>Select a Completed Run</option>
+						 	 </select>
+						  <div class="selectImage"></div>
+					
+						
+
+					  </div>
+					 <p style="float:left;width:50px;margin-left:18px"> Model: </p>
+					  <div class="styledSelect">
+						 <select name="streamflow" class="selectRun">
+						  </select>
+						  <div class="selectImage"></div>
+					  </div>
+
+					<div id="barriers-container">
+
+					</div>
+						<div class="runModel" style="bottom:-30px;position:static">
+					  		<input type="text" class="runInput" value=" Enter a run name" ></input><br>
+					    	<a id="run" href="#">Run with these settings</a>
+					  	</div>
+												
+					</div>
+				</div>
+			</li>
+			<li id="acc1" state="open" style="display:none; width:269px" class="accord-li">
+				<div class="toggle"><span class="title">Basin Selection</span></div>
+				<div class="content">
+					<div id="basin-app" class="application" style="width:269px">
+										<div class="custom-ui-icon"></div>
+					
+						<div id="prompt_header">
+							<br><h2><center>
+								<div id="basinTitle">Basin: West Brook</div>
+							</center></h2>
+						</div>
+						<div id="prompt">
+							<center>
+								<button id="newBasin">Select New Basin</button>
+							</center>
+						</div>
+						<div id="sim">
+							<center>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+							<br>
+								<h2>Simulation Period</h2>
+								<span class="years">30</span> Years
+								<div id="years_slider" style="margin-left:0px;width:200px"></div>
+							</center>
+						</div>
+						
+					</div>
+				</div>
+			</li>
+			
+		</ul>
+	</div>
+	
+	
+	
+	<div id="tree">
+	<ul id="thumbLabels"><li>Basin</li><li>Barrier</li><li>Climate</li><li>Land</li><li>Flow</li><li>Temperature</li><li>Population</li></ul>
+	</div>
+
+</div>
+
+<div id="outputWrapper">
+	<div id="outputTree">
+		<div id="treeContainer">
+			<span id="treeTitle">Run Selection</span>
+			<ul>
+				<li>Basin</li>
+				<li>Barrier</li>
+				<li>Climate</li>
+				<li>Land Use</li>
+				<li>Stream Flow</li>
+				<li>Stream Temperature</li>
+				<li>Fish Population</li>
+				
+			</ul>
+		</div>
+	</div>
+	
+	<div id="outputSelector">
+		<div id="graphContainer">
+			<span id="outputTitle">Output Graph Selection</span>
+			<!-- COMMENTED OUT FOR NOW
+			<ul>
+				<li>Basin</li>
+				<li>Climate</li>
+				<li>Land Use</li>
+				<li>Stream Flow</li>
+				<li>Stream Temperature</li>
+				<li>Fish Population</li>
+			</ul>
+			-->
+			<div id="graphSelectionButtons">
+			<button id="view_climate">View Climate, Flow, and Temperature Graphs</button>
+			<button id="view_population">View Population Graphs</button>
+			</div>
+			<div id="inputDropBox">
+			</div>
+			
+		</div>
+		
+		
+		
+	</div>
+	
+	
+	<div id="runList">
+		<span id="run-list-title">Run Log</span>
+			<div class="filter">
+				<div class="filterSelector">
+					<select onchange="filterHistoryResize(this)">
+						<option value="step">Step</option>
+						<option value="model">Model</option>
+						<option value="basin" disabled>Basin ID</option>
+					</select>
+				</div>
+				<div class="filterWindow" id="step">
+						<input type="checkbox" class="filterCheckBox" id="1" onchange=sortHistory(); value="climate">Climate<br>
+						<input type="checkbox" class="filterCheckBox" id="2" onchange=sortHistory(); value="flow">Stream Flow<br>
+						<input type="checkbox" class="filterCheckBox" id="3" onchange=sortHistory(); value="land">Land Use<br>								
+						<input type="checkbox" class="filterCheckBox" id="4" onchange=sortHistory(); value="population">Fish<br>
+						<input type="checkbox" class="filterCheckBox" id="5" onchange=sortHistory(); value="streamtemp">Stream Temperature
+				</div>
+				<div class="filterWindow" id="model">
+						<input type="checkbox" class="filterCheckBox" id="6" onchange=sortHistory(); value="lcad_query">LCAD Query<br>
+						<input type="checkbox" class="filterCheckBox" id="7" onchange=sortHistory(); value="weather_generator">Stochastic Weather Generation<br>
+						<input type="checkbox" class="filterCheckBox" id="8" onchange=sortHistory(); value="baseline_shift">Baseline Shifted Climate<br>
+						<input type="checkbox" class="filterCheckBox" id="9" onchange=sortHistory(); value="baseline_historic">Historic Climate<br>
+						<input type="checkbox" class="filterCheckBox" id="10" onchange=sortHistory(); value="gcm_downscaled">GCM Downscaled Time Series<br>
+						<input type="checkbox" class="filterCheckBox" id="11" onchange=sortHistory(); value="temp_extreme">Temperature Extreme<br>
+						<input type="checkbox" class="filterCheckBox" id="12" onchange=sortHistory(); value="drought_extreme">Drought Extreme<br>
+						<input type="checkbox" class="filterCheckBox" id="13" onchange=sortHistory(); value="WB_matrix_trout">Trout Pop. Growth Sensitivity<br>
+						<input type="checkbox" class="filterCheckBox" id="14" onchange=sortHistory(); value="salmon_IPM">Salmon Pop. Growth Model
+				</div>
+				<div class="statusFilter">
+					<p> STATUS </p>
+					<input type="checkbox" class="filterCheckBox" id="1" onchange=sortHistory(); value="COMPLETED" >Completed<br>
+					<input type="checkbox" class="filterCheckBox" id="2" onchange=sortHistory(); value="FAILED" >Failed<br>
+					<input type="checkbox" class="filterCheckBox" id="3" onchange=sortHistory(); value="CANCELLED" >Cancelled<br>
+					<input type="checkbox" class="filterCheckBox" id="4" onchange=sortHistory(); value="QUEUED" >Queued
+				</div>
+			</div>
+		
+		<ul id="history-labels">
+			<li onclick=sortHistory('alias'); d-type="alias" d-sorter="1">Alias</li>
+			<li onclick=sortHistory('step'); d-type="step" d-sorter="1">Step</li>
+			<li onclick=sortHistory('script'); d-type="script" d-sorter="1">Model</li>
+			<li onclick=sortHistory('basinid'); d-type="basinid" d-sorter="1">Basin ID</li>
+			<li onclick=sortHistory('start_time'); d-type="start_time" d-sorter="1">Start Time</li>
+			<li onclick=sortHistory('status'); d-type="status" d-sorter="1">Status</li>
+			<li>Link</li>
+		</ul>
+		<ul id="history-list">
+		
+			
+			
+		</ul>
+		
+	</div>
+	
+</div>
+
+<div id="graphWrapper">
+	<div id="graphBar"></div>
+	<div id="graphBoxContainer">
+		<!--<ul id="graph_ul"></ul>-->
+	</div>	
+</div>
+
+
+
+<div id="navBar" state="closed">
+	<div id="navButton"> </div>
+	<ul>
+	<li><button id="inputButton" class="navButton">Model Settings</button></li>
+	<li><button id="outputButton" class="navButton">Run Tree</button></li>
+	<li><button id="historyButton" class="navButton">Run Log</button></li>
+	<li><button id="graphButton" class="navButton">Output Graphs</button></li>
+	</ul>
+</div>
+<div id="loginBar" state="closed">
+	<div id="loginButton"> </div>
+	 <h3 class="loginstatus">Logged in as <span class="username"><%= user %></span><br>
+	  <a href="../login" style="margin-bottom:-40px">Sign Out</a></h3>
+	 
+</div>
+<div id="statusBar" state="closed">
+	<div id="statusButton"> </div>
+	<ul>
+	
+	</ul>
+</div>
+
+
+
+<div id="debug">
+	<div id="set-debug">SET DEBUG</div>
+
+</div>
+
+<div id="active_step" style="display:none">
+	<div id="active_name">Choose a Step</div>
+	
+	<br />
+	<b style='margin-top:20px'>Step Name:</b> <i><div id="active_stepname" >Climate</div> </i>
+<hr>
+	<b>Script Name:</b>  <i><div id="active_scriptname" >StochasticWeatherGenerator.R</div></i>
+<hr>
+	<b>Date of Run:</b>  <i><div id="active_data">7/20/13</div></i>
+<hr>
+
+	
+</div>
+
+<% include foot %>

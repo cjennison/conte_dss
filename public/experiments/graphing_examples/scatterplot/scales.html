@@ -1,0 +1,222 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Data Visualization Scatterplot</title>
+		
+		<script type="text/javascript" src="d3/d3.v3.min.js"> </script>
+		
+		<style>
+			div.bar {
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				display:inline-block;
+				width:20px;
+				height:75px; /* to be overriden */
+				margin-right: 2px;
+				background-color:teal;
+				
+				cursor:pointer;
+			}
+			
+			div.bar:hover{
+				background-color:red;
+			}
+			
+			
+			.circ{
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				fill:black;
+				cursor:pointer;
+			}
+			
+			.circ:hover{
+				fill:rgba(100, 0, 0, 1.0);
+			}
+			
+			.axis path, .axis line{
+				fill:none;
+				stroke:black;
+				shape-rendering: crispEdges;
+			}
+			
+			.axis text{
+				font-family: sans-serif;
+				font-size:11px;
+				fill:olive;
+			}
+			
+			p{
+				color:olive;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<script type="text/javascript">
+			//get CSV File to play with
+			var dataset = [ ];
+			var numDataPoints = 50;
+			var xRange = Math.random() * 1000;
+			var yRange = Math.random() * 1000;
+			for(var i = 0;i < numDataPoints ; i++){
+				var n1 = Math.floor(Math.random() * xRange);
+				var n2 = Math.floor(Math.random() * yRange);	
+				dataset.push([n1, n2]);
+			}
+			
+			
+			var w = 620,
+				h = 300,
+				padding = 30;
+			
+			var xScale = d3.scale.linear()
+				.domain([0, d3.max(dataset, function(d){ return d[0] })])
+				.range([padding, w - padding * 2.2]);
+				
+			var yScale = d3.scale.linear()
+				.domain([0, d3.max(dataset, function(d) { return d[1] })])
+				.range([h - padding, padding])
+				
+			var rScale = d3.scale.linear()
+				.domain([0, d3.max(dataset, function(d) { return d[1] })])
+				.range([2, 5])
+			
+			console.log(xScale);
+				
+			var xAxis = d3.svg.axis();
+			xAxis.scale(xScale);
+			xAxis.orient("bottom")
+			xAxis.ticks(10);
+			
+			var yAxis = d3.svg.axis();
+			yAxis.scale(yScale);
+			yAxis.orient("left")
+			yAxis.ticks(10);
+			
+			
+				
+			var svg = d3.select("body")
+				.append("svg")
+				.attr("width", w)
+				.attr("height", h);
+				
+			svg.append("clipPath")
+				.attr("id", "chart-area")
+				.append("rect")
+				.attr("x", padding)
+				.attr("y", padding)
+				.attr("width", w - padding * 3)
+				.attr("height", h - padding * 2);
+				
+			svg.append("g")
+				.attr("id", "circles")
+				.attr("clip-path", "url(#chart-area)")
+				.selectAll("circle")
+					.data(dataset)
+					.enter()
+					.append("circle")
+					.attr({
+						cx: function(d){
+							return xScale(d[0]);
+						},
+						cy: function(d){
+							return yScale(d[1]);
+						},
+						r: function(d){
+							return 3;
+						}
+					})
+			
+			svg.selectAll("text")
+				.data(dataset)
+				.enter()
+				.append("text")
+				.text(function(d){
+					return d[0] + ", " + d[1];
+				})
+				.attr({
+					x:function(d){ return xScale(d[0]) },
+					y:function(d){ return yScale(d[1]) },
+					opacity:0
+				})
+				.attr("font-family", "sans-serif")
+				.attr("font-size", "11px")
+				.attr("fill", "red")
+				
+			svg.append("g")
+				.attr("class", "x axis")
+				.attr("transform", "translate(0, " + (h-padding) + ")")
+				.call(xAxis);
+				
+			svg.append("g")
+				.attr("class", "y axis")
+				.attr("transform", "translate(" + (padding) +" , 0)")
+				.call(yAxis);
+			
+			/*	
+			setInterval(function(){
+				//New values for dataset
+					var numValues = dataset.length;						 		//Count original length of dataset
+					var maxRange = Math.random() * 1000;						//Max range of new values
+					dataset = [];  						 				 		//Initialize empty array
+					for (var i = 0; i < numValues; i++) {				 		//Loop numValues times
+						var newNumber1 = Math.floor(Math.random() * maxRange);	//New random integer
+						var newNumber2 = Math.floor(Math.random() * maxRange);	//New random integer
+						dataset.push([newNumber1, newNumber2]);					//Add new number to array
+					}
+					
+					//Update scale domains
+					xScale.domain([0, d3.max(dataset, function(d) { return d[0]; })]);
+					yScale.domain([0, d3.max(dataset, function(d) { return d[1]; })]);
+				
+				svg.select(".x.axis")
+					.transition()
+					.duration(1000)
+					.call(xAxis);
+				
+				svg.select(".y.axis")
+					.transition()
+					.duration(1000)
+					.call(yAxis)
+				
+				
+				svg.selectAll("circle")
+					.data(dataset)
+					.transition()
+					.duration(2000)
+					.each("start", function(){
+						d3.select(this)
+							.attr("fill", "magenta")
+							.attr("r", 5)
+					})
+					.attr({
+						cx: function(d){
+							return xScale(d[0]);
+						},
+						cy: function(d){
+							return yScale(d[1]);
+						},
+						r: function(d){
+							return 3;
+						}
+					})
+					
+					
+					.transition()
+					.duration(500)
+					.attr("fill", "black")
+					.attr("r", 2)
+					
+			},4000)
+			*/
+
+		</script>
+		
+		
+	</body>
+</html>

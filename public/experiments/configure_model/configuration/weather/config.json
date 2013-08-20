@@ -1,0 +1,40 @@
+{
+	"step":"climate",
+	"step_alias":"Climate",
+	"preceding":null,
+	
+	
+	"scripts":[
+		{
+			"scriptname":"StochasticWeatherGenerator.R",
+			"script_alias":"Stochastic&nbspWeather&nbspGeneration",
+			"inputs":[
+				{
+					"type":"graph",
+					"vars": [
+						"precip_mean_y1", "precip_mean_yn", "precip_var_y1", "precip_var_y1"
+					]
+				}
+			]		
+		},
+		
+		{
+			"scriptname":"HistoricClimate.R",
+			"script_alias":"Historic&nbspClimate"
+		},
+		{
+			"scriptname":"GCMDownscaledTimeSeries.R",
+			"script_alias":"GCM&nbspDownscaled&nbspTime&nbspSeries"
+		},
+			
+		{
+			"scriptname":"Draught.R",
+			"script_alias":"Draught&nbspExtreme"
+		}	
+	]
+
+
+
+
+}
+

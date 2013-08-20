@@ -1,0 +1,61 @@
+div#top-bar {
+  width : 1652px;
+  height: 50px; 
+  position: absolute;
+  top: 10px;
+  left: 100px;
+  border: 1px solid blue;
+}
+
+div#side-bar {
+  width: 400px;
+  position: absolute;
+  top: 80px;
+  left: 100px;
+  height: 1000px;
+  border: 1px solid red;
+}
+
+div#map-view {
+  position: absolute;
+  top: 80px;
+  left: 550px;
+  width: 1200px;
+  height: 1000px;
+  margin-left: 5px;
+  border: 1px solid green;
+}
+
+div#bottom-bar {
+  position: absolute;
+  top: 1100px;
+  left: 100px;
+  height: 50px;
+  width: 1652px;
+  border: 1px solid orange;
+}
+
+div#logos {
+  position: absolute;
+  bottom: 155px;
+  right: 100px;
+  width: 100px;
+  height: 300px;
+  border: 1px solid green;
+}
+
+div#logos > img {
+  display: block;
+  width: 60px;
+}
+
+div#logos > span#beta {
+  font-family: Arial;
+  font-size: 30px;
+  color: red;
+}
+
+div#logos > p {
+  font-size: 10px;
+  color: blue;
+}

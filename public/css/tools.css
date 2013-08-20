@@ -1,0 +1,20 @@
+#img-viewer-container{
+	position:absolute;
+	width: 600px;
+	height: 400px;
+	background: white;	
+	left:50%;
+	margin-left:-300px;
+	top:30%;
+	margin-top:-200px;
+}
+
+#img-shadowbox{
+	position:absolute;
+	background-color: black;
+	opacity: .5;
+	width:3000px;
+	height:3000px;
+	left:0;
+	top:0;
+}

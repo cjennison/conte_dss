@@ -1,0 +1,30 @@
+
+{
+ "name": "My Basin",
+ "image": "null",
+ "children": [
+  {
+   "name": "Climate",
+   "children": [
+    {
+     "name": "Land",
+     "children": [
+      {
+      "name": "Flow", 
+      "children": [
+        {
+        	"name": "Temp",
+        	"children": [
+	        {
+	        	"name": "Fish"
+	        }
+	       ]
+        }
+       ]
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

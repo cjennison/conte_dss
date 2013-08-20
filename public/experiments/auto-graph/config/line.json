@@ -1,0 +1,66 @@
+{
+  "graphTypes": [
+    {
+      "graphType":"exceedance_probability",
+      "graphClass": "linechart",
+      "width":900,
+      "height":500,
+      "padding":70,
+      "xOffset":200,
+      "yOffset":20,
+      "title": "Exceedance Probability",
+      "title_size":"20px",
+      "ylab":"Value",
+      "xlab":"Probability",
+      "label_size":"10px",
+      "xtick_interval": 10,
+      "xlab_interval": 20,
+      "ytick_interval":10,
+      "ylab_interval":10,
+      "series": [
+          {
+            "directory":"data/",
+            "enabled":true,
+            "csvfilename":"empirical_exc_prob_04yr.csv",
+            "ycolumn":"value",
+            "xcolumn":"exc_prob",
+            "serieslab":"Historic Minimum Monthly",
+            "color":"black",
+            "empirical":true,
+            "stroke":null,
+            "symbol":"circle",
+            "symbolsize":6
+          },
+          
+           {
+            "directory":"data/",
+            "enabled":true,
+            "csvfilename":"quantile_exc_prob.csv",
+            "ycolumn":"value",
+            "xcolumn":"exc_prob",
+            "serieslab":"Historic Minimum Monthly",
+            "color":"red",
+            "empirical":false,
+            "stroke":null,
+            "symbol":"circle",
+            "symbolsize":30,
+            "linetype":"stroke-dasharray"
+          },
+           {
+            "directory":"data/",
+            "enabled":true,
+            "csvfilename":"quantile_exc_prob_lowflow_only.csv",
+            "ycolumn":"value",
+            "xcolumn":"exc_prob",
+            "serieslab":"Historic Minimum Monthly",
+            "color":"green",
+            "empirical":false,
+            "stroke":null,
+            "symbol":"circle",
+            "symbolsize":6 
+          }
+      ]
+    }
+  ]
+}
+  

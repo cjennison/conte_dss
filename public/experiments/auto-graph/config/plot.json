@@ -1,0 +1,30 @@
+{
+  "graphTypes": [
+    
+    {
+      "graphType":"minmax_temp",
+      "graphClass": "surface_plot",
+      "width":900,
+      "height":500,
+      "padding":70,
+      "xOffset":200,
+      "yOffset":20,
+      "title": "Annual Minimum and Maximum of Monthly Average Temperatures",
+      "title_size":"20px",
+ 
+	  "ylab":"Temperature (degrees C)",
+      "xlab":"Year",
+      "label_size":"10px",
+      "xtick_interval": 10,
+      "xlab_interval": 20,
+      "ytick_interval":10,
+      "ylab_interval":10,
+      "ycolumn_min":"min_monthly_temp",
+      "ycolumn_max":"max_monthly_temp"
+     
+      
+    }
+    
+  ]
+}
+  

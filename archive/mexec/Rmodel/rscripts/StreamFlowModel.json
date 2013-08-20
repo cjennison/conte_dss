@@ -1,0 +1,37 @@
+{
+
+  "model_step": "flow",
+  "pre_step": ["climate"],
+  "optional_pre_step": ["land","barriers"],
+  "model_description": "this is abcde model developed by austin and scott, currently parameters are specific to west brook",
+
+  "userid": {
+    "required": 1,
+    "description": "Always required, to be included in all config files."
+  },
+  "runid": {
+    "required": 1,
+    "description": "Always required, to be included in all config files."
+  },
+  "basinid": {
+    "required": 1,
+    "description": "NHDplus featureid or name of preset basin (i.e. west_brook"
+  },
+  "rscript": {
+    "required": 1,
+	 "description": "Name of the script that this config file is for. Always required, to be included in all config files."
+  },
+
+
+
+  "pre_run": {
+	 "description": "Can be a single run or multiple runs (i.e. fish model needs both stream flow and temp inputs)."
+  },
+  
+  "basin_area": {
+	"default":51,
+	"description":"use this until basin area is calculated by basin rscript"
+  }
+
+
+}

@@ -1,0 +1,178 @@
+#statusBar{
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	position:fixed;
+	left:50%;
+	margin-left:-450px;
+	bottom:-100px;
+	
+	width:900px;
+	height:100px;
+	background:white;
+	
+	border-style: solid;
+	border-width: 4px;
+	border-color: #ffbe57;
+	box-shadow: 1px 5px 14px -3px #4D4D4D;
+	z-index:10000;
+}
+
+#statusBar.active{
+	bottom:0px;
+}
+
+#statusBar #statusButton{
+	position:absolute;
+	width:140px;
+	height:30px;
+	cursor:pointer;
+	right:310px;
+	top:-30px;
+	background:url("../images/statushandle.png") no-repeat;
+	background-size:100% 100%;
+}
+
+#statusBar ul{
+	list-style-type: none;
+	margin-left: -42px;
+	margin-top: 10px;
+}
+
+#statusBar ul li {
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	display:inline-block;
+	cursor:pointer;
+	width:100px;
+	height:80px;
+	background:white;
+	margin-left:10px;
+	border-style: solid;
+	border-width: 2px;
+	border-color: #ffbe57;
+	box-shadow: 1px 5px 14px -3px #4D4D4D;
+	opacity:0;
+}
+
+#statusBar ul li.active{
+	opacity: 1;
+}
+
+#statusBar ul li span{
+	position: absolute;
+word-wrap: break-word;
+color: #1C94C4;
+line-height: .9;
+font-size: 16px;
+text-align: left;
+width: 100px;
+float: left;
+}
+#statusBar ul li .status{
+	position:absolute;
+	color:#1C94C4;
+	width:100px;
+	margin-top:50px;
+	
+	font-size:16px;
+	text-align:center;
+}
+
+#loginBar{
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	position:fixed;
+	left:50%;
+	margin-left:-450px;
+	bottom:-100px;
+	
+	width:900px;
+	height:100px;
+	background:white;
+	
+	border-style: solid;
+	border-width: 4px;
+	border-color: #ffbe57;
+	box-shadow: 1px 5px 14px -3px #4D4D4D;
+}
+
+#loginBar.active{
+	bottom:0px;
+}
+
+#loginBar #loginButton{
+	position:absolute;
+	width:140px;
+	height:30px;
+	cursor:pointer;
+	right: 165px;
+	top:-30px;
+	background:url("../images/loginhandle.png") no-repeat;
+	background-size:100% 100%;
+}
+
+#loginBar .loginstatus{
+	width:500px;
+	position:absolute;
+	right:165px;
+	text-align: center;
+}
+#loginBar .loginstatus a{
+	color:blue;
+	font-size:12px;
+}
+
+#navBar{
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	position:fixed;
+	left:50%;
+	margin-left:-450px;
+	bottom:-100px;
+	
+	width:900px;
+	height:100px;
+	background:white;
+	
+	border-style: solid;
+	border-width: 4px;
+	border-color: #ffbe57;
+	box-shadow: 1px 5px 14px -3px #4D4D4D;
+}
+
+#navBar ul{
+	position: absolute;
+	width: 900px;
+	left: 50%;
+	margin-left: -347px;
+	list-style-type: none;
+}
+
+#navBar ul li{
+	display:inline-block;
+}
+
+#navBar.active{
+	bottom:0px;
+}
+
+#navBar #navButton{
+	position:absolute;
+	width:140px;
+	height:30px;
+	cursor:pointer;
+	right: 20px;
+	top:-30px;
+	background:url("../images/navigationhandle.png") no-repeat;
+	background-size:100% 100%;
+}
+
+

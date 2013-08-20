@@ -1,0 +1,7 @@
+{
+	"name": "tools",
+  "version": "0.0.1",
+  "author": "Sam Letcher <sletcher94@gmail.com>",
+  "description": "a series of core tools.",
+  "main": "./tools.js"
+}

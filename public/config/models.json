@@ -1,0 +1,370 @@
+{
+	"barrier":[
+		{
+			"script":"clip_basin_by_barrier",
+			"alias":"Clip Basin by Barrier",
+			"disabled":false,
+			"class":"POINT_DATA",
+			"requirements":[]
+		}
+		
+	],
+	"climate":[
+		{
+			"script":"weather_generator",
+			"alias":"Stochastic Weather Generator",
+			"class":"TIMESERIES",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+							"POINT_DATA",
+							null
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"baseline_shift",
+			"alias":"Baseline Shifted Climate",
+			"class":"OTHER_DATA",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+							"POINT_DATA"
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"baseline_historic",
+			"alias":"Historic Climate",
+			"class":"TIMESERIES",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+							"POINT_DATA"
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"gcm_downscaled",
+			"alias":"GCM Downscaled Time Series",
+			"class":"TIMESERIES",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+							"POINT_DATA"
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"temp_extreme",
+			"alias":"Temperature Extreme",
+			"class":"TIMESERIES",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+							"POINT_DATA"
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"drought_extreme",
+			"alias":"Drought Extreme",
+			"class":"TIMESERIES",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+							"POINT_DATA"
+					]
+				}
+			
+			]
+		}
+		
+		
+	],
+	
+	"land":[
+		{
+			"script":"nlcd_query",
+			"alias":"NLCD Land Query",
+			"class":"SPACIAL_DATA",
+			"description":null, 
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES",
+						null
+					]
+				}
+			]
+		},
+		
+		{
+			"script":"change_percent_forest",
+			"alias":"Change % Forest",
+			"class":"RASTER_DATA",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES",
+						null
+					]
+				}
+			]
+		},
+		{
+			"script":"lcad_query",
+			"alias":"LCAD Land Query",
+			"class":"SPACIAL_DATA",
+			"disabled":true,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES",
+						null
+					]
+				}
+			]
+		}
+	],
+	"flow":[
+		{
+			"script":"abcde",
+			"alias":"ABCDE Regional",
+			"class":"SPATIAL_DATA",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES"
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						"SPACIAL_DATA",
+						"RASTER_DATA",
+						null
+					]
+				}
+			
+			]
+		}
+	],
+	"streamtemp":[
+		{
+			"script":"mohseni",
+			"alias":"Non-Linear Regression",
+			"class":"OTHER_DATA",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES"
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						"SPACIAL_DATA",
+						"RASTER_DATA",
+						null
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
+						"SPATIAL_DATA", 
+						null
+					]
+				}
+			
+			]
+		}
+	],
+	"population":[
+		{
+			"script":"salmon_IPM",
+			"alias":"Salmon Pop. Growth Model",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES"
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						"SPACIAL_DATA",
+						"RASTER_DATA",
+						null
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
+						"SPATIAL_DATA"
+					]
+				},
+				{
+					"step":"streamtemp",
+					"script":["OTHER_DATA"]
+				}
+			
+			]
+		},
+		{
+			"script":"trout_occupancy_CT",
+			"alias":"CT Brook Trout Occupancy",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES"
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						"SPACIAL_DATA",
+						"RASTER_DATA"
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
+						"SPATIAL_DATA", 
+						null
+					]
+				},
+				{
+					"step":"streamtemp",
+					"script":[
+						"OTHER_DATA",
+						null
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"plot_IPM",
+			"alias":"Trout Pop. Growth Sensitivity",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"POINT_DATA"
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES"
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						"SPACIAL_DATA",
+						"RASTER_DATA",
+						null
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
+						"SPATIAL_DATA"
+					]
+				},
+				{
+					"step":"streamtemp",
+					"script":[
+						"OTHER_DATA"
+					]
+				}
+			
+			]
+		}
+	]
+	
+	
+	
+	
+
+}

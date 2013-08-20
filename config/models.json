@@ -1,0 +1,33 @@
+{
+	"barrier":[
+		{
+			"script":"clip_basin_by_barrier",
+			"disabled":false,
+			"requirements":[]
+		}
+		
+	],
+	"climate":[
+		{
+			"script":"weather_generator",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":null
+				}
+			
+			]
+		},
+		
+		{
+			"script":"baseline_shift",
+			"disabled":true
+		}
+	]
+	
+	
+	
+	
+
+}

@@ -1,0 +1,74 @@
+{
+
+  "model_step": "climate",
+  "pre_step": [],
+  "model_desc": "this model uses a stochastic weather generator to create a timeseries based on user-specified avg and var precip. credit to scott, casey, and austin. (?)",
+
+
+  "userid": {
+    "required": 1,
+    "description": "Always required, to be included in all config files."
+  },
+  "runid": {
+    "required": 1,
+    "description": "Always required, to be included in all config files."
+  },
+  "basinid": {
+    "required": 1,
+    "description": "NHDplus featureid or name of preset basin (i.e. west_brook"
+  },
+  "rscript": {
+    "required": 1,
+	 "description": "Name of the script that this config file is for. Always required, to be included in all config files."
+  },
+
+
+
+  "pre_run": {
+	 "description": "Can be a single run or multiple runs (i.e. fish model needs both stream flow and temp inputs)."
+  },
+  "preset_basin": {
+    "default":"",
+	 "description": "Can be west brook or null.  Eventually, add a few more preset options?"
+  },
+
+
+
+  "lat": {
+    "required": 1,
+    "description": "Coordinate of basin centroid"
+  },
+  "long": {
+    "required": 1,
+	 "description": "Coordinate of basin centroid"
+  },
+  "change_precip_mean": {
+    "default": 0,
+	 "description":"Change in percentage (as 0-100%). need to divide by 100."
+  },
+  "change_precip_var": {
+    "default": 0,
+	 "description":"Change in percentage (as 0-100%). need to divide by 100."
+  },
+  "change_airtemp_mean": {
+    "default": 0,
+	 "description":"Degrees C change (not percent change)"
+  },
+
+
+
+  "nyears": {
+    "default": 81,
+    "min": 1,
+    "description": "Number of years for simulation to run."
+  },
+  "wet_threshold": {
+    "default": 0,
+    "description": "In mm/day. Minimum threshold of daily precip for a day to be considered a wet day."
+  },  
+  "met_dir": {
+     "default": "/metdata/DailyMets/",
+     "description":"The directory where gridded meterological data is stored.  Within this dir, files are names by lat & long."
+  }
+
+}

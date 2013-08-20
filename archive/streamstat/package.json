@@ -1,0 +1,7 @@
+{
+  "name": "streamstat",
+  "version": "0.0.1",
+  "author": "Tim Richards <tim.d.richards@gmail.com>",
+  "description": "a library for accessing the streamstat web service.",
+  "main": "./streamstat.js"
+}

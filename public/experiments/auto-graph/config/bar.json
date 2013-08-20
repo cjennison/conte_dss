@@ -1,0 +1,55 @@
+{
+  "graphTypes": [
+    
+    {
+      "graphType":"density",
+      "graphClass": "histogram",
+      "width":900,
+      "height":500,
+      "padding":70,
+      "xOffset":200,
+      "yOffset":20,
+      "title": "Count and Size Density",
+      "ylab":"Count",
+      "xlab":"Size",
+      "xtick_interval": 10,
+      "xlab_interval": 20,
+      "ytick_interval":10,
+      "ylab_interval":10,
+      "series": [
+          {
+            "directory":"data/",
+            "enabled":true,
+            "csvfilename":"singleyear_graph_d.csv",
+            "ycolumn":"zero_autumn_par_2079",
+            "xcolumn":"count",
+            "serieslab":"Zero Autumn",
+            "color":"red"
+           
+          },
+          {
+            "directory":"data/",
+            "enabled":true,
+            "csvfilename":"singleyear_graph_d.csv",
+            "ycolumn":"one_autumn_par_2079",
+            "xcolumn":"count",
+            "serieslab":"One Autumn",
+            "color":"blue"
+           
+          },
+          {
+            "directory":"data/",
+            "enabled":true,
+            "csvfilename":"singleyear_graph_d.csv",
+            "ycolumn":"two_autumn_par_2079",
+            "xcolumn":"count",
+            "serieslab":"Two Autumn",
+            "color":"green"
+           
+          }
+      ]
+    }
+    
+  ]
+}
+  

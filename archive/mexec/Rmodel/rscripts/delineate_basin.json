@@ -1,0 +1,31 @@
+{
+
+  "model_step": "basin",
+  "model_description": "code delineates a basin based on a lat/long coordinate and NHDplus geometry. it writes spatial files into the comid/basinid directory, and writes basin attributes to a param.json file in that directory. written by ana",
+
+  "basinid": {
+	"required":1,
+    "description": "corresponds to the COMID (NHDflowlines or PlusFlowlineVAA) or FeatureID (NHDplus Catchments)"
+  },
+
+  "nickname": {
+	 "description": "user-defined name for basin"
+  },
+  
+  "basin_area": {
+	"required":1,
+	"description":"in sq km. calculated from NHDplus attributes"
+  },
+  
+  "lat": {
+	"required":1,
+	"description":"of basin centroid. calculated from NHDplus attributes"
+  },
+  
+  "long": {
+	"required":1,
+	"description":"of basin centroid. calculated from NHDplus attributes"
+  }
+
+
+}

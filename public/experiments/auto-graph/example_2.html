@@ -1,0 +1,172 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Data Visualization Scatterplot</title>
+		
+<link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript" src="d3/d3.v3.min.js"> </script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"> </script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"> </script>
+		<script type="text/javascript" src="d3/jcanvas.min.js"> </script>
+
+		<!-- AUTOGRAPH -->
+		<script type="text/javascript" src="lib/auto-graph.js"> </script>		
+		<script type="text/javascript" src="lib/graphs/scatterplot.js"> </script>		
+		
+		<style>
+			html{
+				font-family: 'Oswald', sans-serif;
+			}
+			@font-face {
+				font-family: League;
+				src: url('fonts/leaguegothic-regular-webfont.ttf');
+			}
+		
+			div.bar {
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				display:inline-block;
+				width:20px;
+				height:75px; /* to be overriden */
+				margin-right: 2px;
+				background-color:teal;
+				
+				cursor:pointer;
+			}
+			
+			div.bar:hover{
+				background-color:red;
+			}
+			
+			
+			
+			
+			.point{
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				cursor:pointer;
+			}
+			
+			circle:hover{
+				r:20;
+			}
+			
+			.axis path, .axis line{
+				fill:none;
+				stroke:black;
+				/*shape-rendering: crispEdges; */
+			}
+			
+			.y.axis line{
+				opacity:1;
+				stroke-dasharray: 3px;
+				stroke: rgb(202, 202, 202);
+			}
+			
+			.yLabel{
+				font-size: 24px;
+					position: relative;
+					font-family: 'Oswald', sans-serif;
+					text-align: center;
+					transform:rotate(-90deg);
+				-ms-transform:rotate(-90deg); /* IE 9 */
+				-webkit-transform:rotate(-90deg); /* Safari and Chrome */
+			}
+			
+			.xLabel{
+				bottom:30px;
+				font-size: 24px;
+				position: relative;
+				font-family: 'Oswald', sans-serif;
+				text-align: center;
+			}
+			
+			.axis text{
+				font-family: 'Oswald', sans-serif;
+				font-size:14px;
+				fill:olive;
+			}
+			
+			p{
+				color:olive;
+			}
+			
+			svg{
+				
+			}
+			
+			.label{
+				font-size:17px;
+				font-family:Helvetica;
+			}
+			.title{
+				font-size: 28px;
+				left: 67px;
+				position: relative;
+				color: rgba(50,50,50,.5);
+				font-family: 'Oswald', sans-serif;
+			}
+			
+			.toggle{
+				position: relative;
+				left: 643px;
+				top: 40px;
+				height: auto;
+				width: 300px;
+			}
+			
+			.toggle ul{
+				list-style-type:none;
+				width: 300px;
+			}
+			
+			.ser-label{
+				margin-left: 20px;
+				
+			}
+			
+			canvas{
+				position: absolute;
+				margin-top: 4px;
+			}
+			
+			.data-popup{
+				position: absolute;
+				background: blueviolet;
+				border-radius: 5px;
+				font-family: Helvetica;
+				color: white;			
+			}
+			
+			canvas{
+				cursor:pointer;
+			}
+			
+		</style>
+	<script>
+	var _dir = "data";
+	$(function(){
+		var url="config/graph.json";
+		
+		AutoGraph.initialize(url, true, ['#graph1', '#graph2']);
+	});
+		
+			
+			
+		</script>
+	
+	</head>
+	<body>
+	
+	<div id="container"></div>
+		
+	<div id="graph1"></div>
+	<div id="graph2"></div>
+		
+	</body>
+</html>

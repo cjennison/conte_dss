@@ -1,0 +1,42 @@
+body {
+  font-family: arial, helvetica, sans-serif;
+  font-size: 16px;
+}
+
+h1 {
+  font-family: Papyrus, Candara, century gothic, Gill Sans, sans-serif;
+  font-size: 30px;
+  text-align: center;
+}
+h2 {
+font-family: Candara, century gothic, Gill Sans, sans-serif;
+font-weight: bold;
+font-size: 18px;
+}
+h3 {
+font-family: Candara, century gothic, Gill Sans, sans-serif;
+font-weight: bold;
+font-size: 16px;
+}
+h4 {
+font-family: Candara, century gothic, Gill Sans, sans-serif;
+font-weight: normal;
+font-size: 14px;
+}
+
+div#content {
+	left: 10px;
+	top: 100px;
+	width: 60%;
+	height: 200px;
+	text-align: center;
+	vertical-align: middle;
+	position: absolute;
+}
+
+ul.plain {
+	list-style-type:none;
+	text-indent: -40px;
+}
+
+

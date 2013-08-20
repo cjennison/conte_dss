@@ -1,0 +1,24 @@
+<div id="weather-models-app">
+  <div id="loader">
+    <div id="message"></div>
+  </div>
+  <select name="weathertype" class="ui-state-default"><option>Stochastic Weather Generation</option>
+    <option disabled="disabled">Downscaled Climate Scenario</option></select>
+  <p><strong>Specify Amount Change</strong>
+    <br>Please select values below for changes driving stochastically generated weather.
+  </p>
+  <p>
+    
+    <p>Mean Annual Precipitation (% change, 80-year mean) [<span id="precip01-value"></span>%]</p>
+    <div id="precip01"></div>
+    
+    <p>Precipitation Annual Variance (% change, 80-year mean) [<span id="precip02-value"></span>%]</p>
+    <div id="precip02"></div>
+
+    <p>Mean Annual Temperature (&deg;C change, 80-year mean) [<span id="mean-temp-value"></span>]</p>
+    <div id="mean-temp"></div>
+  </p>
+  <p>
+    <a id="run" href="#">Run Model</a>
+  </p>
+</div>

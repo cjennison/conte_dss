@@ -1,0 +1,53 @@
+{
+	"modelInfo": {
+		"climate" :{
+			"idx": 1,
+			"dependency": [],
+			"scripts": ["weather_generator","baseline_historic","gcm_downscaled","temp_extreme","drought_extreme"]
+		},
+
+		"land": {
+			"idx": 2,
+			"dependency": ["climate"],
+			"scripts": ["lcad_query"]
+		},
+
+		"barriers": {
+			"idx": 3,
+			"denpendency": [],
+			"scripts": []
+		},
+
+		"flow": {
+			"idx": 4,
+			"dependency": ["land"],
+			"scripts": ["abcde_regional"]
+		},
+
+		"streamtemp": {
+			"idx": 5,
+			"dependency": ["climate", "flow"],
+			"scripts": ["nonlinear_regression"]
+		},
+
+		"population": {
+			"idx": 6,
+			"dependency": ["streamtemp", "flow"],
+			"scripts": ["IPM_WB_trout","IPM_WB_salmon","DM_WB_trout"]
+		}
+	},
+
+	"scriptInfo": {
+		"weather_generator": {
+			"name": "weather_generator",
+			"model": "climiate"
+		},
+
+		"baseline_historic": {
+			
+		}
+	},
+
+	"modelArray": ["climate", "land", "barriers", "flow", "streamtemp", "population"]
+
+}

@@ -1,0 +1,13 @@
+{
+	"userid": "user1234",
+	"runid": "run0003",
+	"basinid": "west_brook",
+	"rscript": "StreamTemperatureModel",
+	"pre_run": ["run0001"],
+	"coef_str": [17.9591113,18.8820565,19.0037266,18.9207433,8.5984435, 9.9418541, 8.9901715, 9.7464999, 0.7068154,  0.6790824,  0.7429935,  0.6796490, -0.1901492, -0.5812414, -0.4318731, -0.5826941],
+	"coef_cols":4,
+	
+	
+	"_comment": "for testing, evenutally basin area will be calculated in basin script"
+}
+

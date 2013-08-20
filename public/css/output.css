@@ -1,0 +1,339 @@
+#outputTree{
+	position:absolute;
+	width:100%;
+	height:400px;
+	background:rgba(200,200,200,0);
+	
+	top:0;
+	left:-50px;
+}
+
+#outputSelector{
+	position:absolute;
+	width:100%;
+	height:250px;
+	background:rgba(0,0,200,.7);
+	display:none;
+	top:400px;
+	left:-50px;
+}
+
+#treeContainer{
+	position: absolute;
+	width: 1300px;
+	left: 50%;
+	margin-left: -750px;
+}
+
+#treeContainer	ul{	
+	list-style-type: none; 
+	margin-top:40px;
+		margin-left:0px;
+
+	width:102%;
+}
+
+#treeContainer #treeTitle{
+	position:absolute;
+	width:100%;
+	text-align: center;
+	font-size:26px;
+	margin-top:10px;
+	margin-left:-50px;
+}
+
+#treeContainer ul li{
+	margin-left:84px;
+	width:100px;
+	text-align:center;
+	display:inline-block;
+	font-size: 15px;
+	
+	font-weight:900;
+	 
+}
+
+#treeContainer svg{
+	margin-top:-75px;
+	margin-left:70px;
+}
+
+.outputgraph {
+	border: 4px solid grey;
+	z-index:1;
+	
+	min-width:220px;
+	min-height:171.95px;
+	
+}
+
+#graphBoxContainer{
+	position: absolute;
+	height: 825px;
+	width: 1400px;
+	margin-top: 7%;
+	margin-left: 11%;
+	overflow-y: auto;
+	overflow-x: hidden;
+	}
+
+#graphBoxContainer .graphDiv{
+	overflow:hidden;
+	position: absolute;
+	display: inline-block;
+	width: 590px;
+	height: 350px;
+	/*
+	margin: 40px;
+	margin-top: 20px;
+	*/
+	border: 1px solid black;
+	box-shadow: 1px 5px 15px 0px #4D4D4D;
+	-o-transition: all 1s ease-out;
+	-ms-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+	background: white;
+}
+
+#graphBoxContainer .graphDiv #minimize_handle{
+	position: absolute;
+	top: 0px;
+	right: 0px;
+	height: 35px;
+	width: 35px;
+	background:url("../images/minimize_for_graphs.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	-o-transition: all 0s;
+	-ms-transition: all 0s;
+	-moz-transition: all 0s;
+	-webkit-transition: all 0s;
+}
+
+#graphBoxContainer .graphDiv #maximize_handle{
+	position: absolute;
+	top: 0px;
+	right: 30px;
+	height: 35px;
+	width: 35px;
+	background:url("../images/maximize_for_graphs.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+	-o-transition: all 0s;
+	-ms-transition: all 0s;
+	-moz-transition: all 0s;
+	-webkit-transition: all 0s;
+}
+
+#graphBar .graphDiv p {
+margin-top: 33px;
+text-align: center;
+color: black;
+font-weight: bolder;
+font-size: 13px;
+}
+
+#graphBoxContainer #graphShadowBox{
+	z-index: 0;
+	background: black;
+	width: 1000%;
+	height: 1001%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	opacity: .7;
+}
+
+#graphWrapper #graphBar{
+	position: absolute;
+	border: 1px solid black;
+	box-shadow: 1px 5px 15px 0px #4D4D4D;
+	height: 100px;
+	top: 10px;
+	right: 398px;
+	width: 105px;
+	-o-transition: all 1s ease-out;
+	-ms-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+}
+
+#graphWrapper #graphBar .graphDiv{
+	position: absolute;
+	margin-top: 5px;
+	height: 90px;
+	width: 90px;
+	border: 1px solid black;
+	box-shadow: 1px 5px 15px 0px #4D4D4D;
+	background-color: lightgray;
+}
+
+#graphWrapper #graphBar .graphDiv #minimizeBar_handle{
+	position: relative;
+	top: 0px;
+	left: 60px;
+	right: 0px;
+	height: 30px;
+	width: 30px;
+	background:url("../images/minimize_for_graphs.png");
+	background-size: contain;
+	background-repeat: no-repeat;
+	cursor: pointer;
+}
+
+#inputDropBox{
+	display:none;
+	position: fixed;
+	width: 300px;
+	height: 200px;
+	top: 427px;
+	left: -252px;
+	background: white;
+}
+
+#inputDropBox.active{
+	left: -150px;
+}
+
+#basinImage{
+	position:absolute;
+	top:20px;
+	left:110px;
+	
+	width:400px;
+	height:400px;
+	background:url("../images/basin.svg");
+	background-size:100% 100%;
+}
+
+#chart{
+  position: absolute;
+  top: 20px;
+  left:150px;
+  width:500px;
+  height:400px;
+  background-color: white;
+}
+
+#northwestImage{
+	position: absolute;
+	  top: 20px;
+	  left:150px;
+	  width:500px;
+	  height:400px;
+	background:url("../images/sample_temp_graph.svg");
+	background-size:100% 100%;
+}
+
+#northeastImage{
+	position:absolute;
+	top:20px;
+	right:230px;
+	width:500px;
+	height:400px;
+	background:url("../images/sample_temp_graph.svg");
+	background-size:100% 100%;
+}
+
+#southwestImage{
+	position:absolute;
+	bottom:150px;
+	left:150px;
+	
+width: 500px;
+height: 400px;
+background: url("../images/sample_precip_graph.svg");
+	background-size:100% 100%;
+}
+
+#southeastImage{
+	position:absolute;
+	bottom:150px;
+	right:230px;
+	
+width: 500px;
+height: 400px;
+background: url("../images/sample_flow_graph.svg");
+	background-size:100% 100%;
+}
+
+#climateImage{
+	position:absolute;
+	top:20px;
+	right:180px;
+	
+	width:400px;
+	height:400px;
+	background:url("../images/climate_thumbnail.svg");
+	background-size:100% 100%;
+}
+
+#flowImage{
+	position:absolute;
+	bottom:150px;
+	left:110px;
+	
+	width:400px;
+	height:400px;
+	background:url("../images/flow_thumbnail.svg");
+	background-size:100% 100%;
+}
+
+#fishImage{
+	position:absolute;
+	bottom:150px;
+	right:180px;
+	
+	width:400px;
+	height:400px;
+	background:url("../images/population_thumbnail.gif");
+	background-size:100% 100%;
+}
+
+#checkBoxes{
+	position: absolute;
+	top: 37px;
+	right: 166px;
+	width:50px;
+}
+
+#checkBoxes ul{
+	list-style-type: none;
+	display:block;
+}
+
+#checkBoxes ul li{
+	position:absolute;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+	position: absolute;
+	width: 26px;
+	height:26px;
+	cursor:pointer;
+}
+input[type="checkbox"] + label span {
+    display:inline-block;
+    width:26px;
+    height:26px;
+    margin:-1px 4px 0 0;
+    vertical-align:middle;
+    background:url(../images/check_radio_sheet.png) left top no-repeat;
+    
+}
+input[type="checkbox"]:checked + label span {
+    background:url(../images/check_radio_sheet.png) -29px top no-repeat;
+}
+
+#graphSelectionButtons{
+	position: absolute;
+	text-align: center;
+	left: 50%;
+	width: 90%;
+	margin-left: -50%;
+	top: 100px;
+}

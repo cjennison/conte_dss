@@ -1,0 +1,15 @@
+{
+    "name": "application-name"
+  , "version": "0.0.1"
+  , "private": true
+  , "dependencies": {
+      "express": ">= 3.0.5"
+    , "ejs": ">= 0.8.3"
+    , "socket.io": ">= 0.9.13"
+    , "xml2js": "0.1.13"
+    , "node-uuid": "1.4.0"
+    , "mkdirp": ">= 0.3.4"
+    , "async": ">= 0.1.22"
+    , "zombie": ">= 1.4.1"
+  }
+}

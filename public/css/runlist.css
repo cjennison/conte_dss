@@ -1,0 +1,152 @@
+#runList{
+	position: absolute;
+	left: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+#run-list-title{
+	position: absolute;
+	width: 100%;
+	text-align: center;
+	font-size: 60px;
+}
+
+
+#runList #history-list{
+	position: absolute;
+	list-style-type: none;
+	width: 1259px;
+	height: 77%;
+	left: 50%;
+	overflow-y: scroll;
+	margin-left: -642px;
+	top: 110px;
+	
+}
+
+#runList #history-list li.history-item{
+	width: 1200px;
+	/* height: 60px; */
+	background: url(../images/history_bar.png);
+	background-size: 100% 100%;
+	margin-top: 10px;
+	border: 5px solid #D67205; 
+	-moz-box-shadow: 3px 3px 4px #000;
+		-webkit-box-shadow: 3px 3px 4px #000;
+		box-shadow: 3px 3px 4px #000;
+}
+
+#runList #history-list li.history-item:hover{
+	opacity:.9;
+}
+
+.history-box{
+	
+}
+
+#history-labels{
+	position: absolute;
+	left: 50%;
+	padding: 0;
+	width: 1200px;
+	margin-left: -578px;
+	font-size: 20px;
+	top: 62px;
+}
+
+#history-labels li:hover{
+	font-weight: 600;
+}
+
+
+#history-labels li{
+	display: inline-block;
+	width: 120px;
+	text-align: center;		
+	text-decoration:underline;
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	cursor:pointer;
+}
+
+#history-labels li:not(:first-child){
+	margin-left:47px;
+}
+
+#runList #history-list li.history-item ul{
+	padding:0;
+}
+
+#runList #history-list li.history-item ul li .history-box{
+	width: 166px;
+	text-align: center;
+	float: left;
+	font-size: 16px;
+	line-height: 1;
+	word-wrap: break-word;
+}
+
+#runList #history-list li.history-item ul li{
+	display: inline-block;
+}
+
+#runList #history-list li.history-item ul li:not(:first-child){
+	margin-left:6px;
+}
+
+#runList .filter{
+	z-index: 10;
+	position: absolute;
+	top: 133px;
+	left: 320px;
+	background-color: white;
+	border: 5px solid #D67204;
+	padding: 4px;
+	-webkit-box-shadow: 3px 3px 4px #000;
+	height: 144px;
+	width: 220px;
+}
+
+#runList .filter .filterWindow{
+	position: absolute;
+	left: 0;
+}
+
+#runList .filter .statusFilter{
+	position: absolute;
+	bottom: -136px;
+	left: -4px;
+	background-color: white;
+	border: 5px solid #D67204;
+	padding: 4px;
+	-webkit-box-shadow: 3px 3px 4px #000;
+	width: 220px;
+	
+}
+
+#runList .filter .statusFilter p{
+	margin: 0;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;	
+}
+
+#runList .filterCheckBox{
+	opacity: 1;
+	position: static;
+	width: auto;
+	height: auto;
+}
+
+#runList .filter #step{
+	display: block;
+}
+
+#runList .filter #model{
+	display: none;
+}
+
+

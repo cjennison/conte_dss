@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.css" />
+		 <!--[if lte IE 8]>
+		     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.5/leaflet.ie.css" />
+		 <![endif]-->
+		 <style>
+		 	#map {
+		 		height:300px;
+		 	}
+		 </style>
+		 <script src="http://cdn.leafletjs.com/leaflet-0.5/leaflet.js"></script>
+		<script>
+		
+		
+		
+		function init(){
+			var cmAttr = 'Map data &copy; 2011 OpenStreetMap contributors, Imagery &copy; 2011 CloudMade',
+				cmUrl = 'http://{s}.tile.cloudmade.com/BC9A493B41014CAABB98F0471D759707/{styleId}/256/{z}/{x}/{y}.png';
+			
+			//Set a layergroup for markers
+			var cities = new L.LayerGroup();
+			L.marker([39.61, -105.02]).bindPopup('This is Littleton').addTo(cities);
+			L.marker([39.74, -104.99]).bindPopup('This is Denver').addTo(cities);
+			L.marker([39.73, -104.8]).bindPopup('This is Aurora').addTo(cities);
+			L.marker([39.77, -105.23]).bindPopup('This is Golden').addTo(cities);
+			
+			//Add layers
+			var minimal = L.tileLayer(cmUrl, {styleId: 22677, attribution: cmAttr}),
+				midnight = L.tileLayer(cmUrl, {styleId: 999, attribution: cmAttr}),
+				motorways = L.tileLayer(cmUrl, {styleId: 46561, attribution: cmAttr});
+			
+			var nexrad = L.tileLayer.wms("http://mesonet.agron.iastate.edu/cgi-bin/wms/nexrad/n0r.cgi", {
+				    layers: 'nexrad-n0r-900913',
+				    format: 'image/png',
+				    transparent: true,
+				    attribution: "Weather data © 2012 IEM Nexrad"
+				});
+			//Create the map
+			var map = L.map('map', {
+				center: [39.73, -104.99],
+				zoom:10,
+				layers: [minimal, motorways, cities]
+			});
+			
+			//Add baselayers to category
+			var baseLayers = {
+				"Minimal": minimal,
+				"Night View": midnight,
+				
+			};
+			
+			
+			//Add Overlays to category
+			var overlays = {
+				"Motorways": motorways,
+				"Cities": cities,
+				"Raster": nexrad
+			};
+			
+			L.control.layers(baseLayers, overlays).addTo(map);
+
+			
+		
+			
+			
+			
+			var popup = L.popup()
+			function onMapClick(e){
+				console.log(e)
+				popup.setLatLng(e.latlng)
+					.setContent("You clicked the map at: " + e.latlng.toString())
+					.openOn(map)
+			}
+			
+			map.on('click', onMapClick);
+
+		}
+			
+		</script>
+	</head>
+	<body onload="init()">
+		<div id="map">
+			
+		</div>
+	</body>
+</html>

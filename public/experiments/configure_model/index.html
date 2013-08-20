@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="http://code.jquery.com/jquery-1.10.1.min.js"> </script>
+		<script src="scripts/config_parser.js"> </script>
+		<script src="scripts/app_builder.js"> </script>
+		<style>
+			.input_window{
+				position:absolute;
+				left:50%;
+				width:400px;
+				height:600px;
+				margin-left:-200px;
+				background:grey;
+			}
+			
+			.step-title{
+				position:absolute;
+				width:100%;
+				text-align:center;
+				font-size:34px;
+				color:white;
+				font-family:Helvetica;
+			}
+			
+			.script_selector{
+				position:absolute;
+				width:300px;
+				left:50%;
+				margin-left:-150px;
+				text-align:center;
+				font-size:15px;
+				color:black;
+				top:50px;
+			}
+			
+			.app-window{
+				position: absolute;
+				width: 100%;
+				height: 500px;
+				bottom: 0;
+				background: rgba(0,0,0,.3);
+			}
+		</style>
+		<script>
+			$(function(){
+				console.log("save the kitten")
+				var weather_config;
+				Config.loadJSON("./configuration/weather/config.json", function(data){
+					weather_config = data;
+				});
+				
+				var land_config;
+				Config.loadJSON("./configuration/land/config.json", function(data){
+					land_config = data;
+				});
+				
+				var configLoader = setInterval(function(){
+					if(weather_config != null){
+						clearInterval(configLoader);
+						AppBuilder.buildApplication(weather_config);
+						AppBuilder.buildApplication(land_config);
+					}
+				},1000)
+				
+			})
+		</script>
+	</head>
+	<body>
+		<!--
+		<div id="input_window">
+			<span class="step_title">step_title</span>
+		</div>
+		-->
+	</body>
+</html>

@@ -1,0 +1,180 @@
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Data Visualization Scatterplot</title>
+<link href='http://fonts.googleapis.com/css?family=Oswald:300' rel='stylesheet' type='text/css'>
+		<script type="text/javascript" src="d3/d3.v3.min.js"> </script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"> </script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"> </script>
+		<script type="text/javascript" src="d3/jcanvas.min.js"> </script>
+		<script type='text/javascript' src="d3/big.js"> </script>
+
+		<!-- AUTOGRAPH -->
+		<script type="text/javascript" src="lib/auto-graph.js"> </script>		
+		<script type="text/javascript" src="lib/graphs/scatterplot.js"> </script>		
+		<script type="text/javascript" src="lib/graphs/histogram.js"> </script>		
+		<style>
+			
+			html{
+				font-family: 'Oswald', sans-serif;
+			}
+			
+			div.bar {
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				display:inline-block;
+				width:20px;
+				height:75px; /* to be overriden */
+				margin-right: 2px;
+				background-color:teal;
+				
+				cursor:pointer;
+			}
+			
+			div.bar:hover{
+				background-color:red;
+			}
+			
+			
+			.point{
+				-o-transition: all .3s ease-out;
+				-ms-transition: all .3s ease-out;
+				-moz-transition: all .3s ease-out;
+				-webkit-transition: all .3s ease-out;
+				cursor:pointer;
+			}
+			
+			circle:hover{
+				r:20;
+			}
+			
+			.axis path, .axis line{
+				fill:none;
+				stroke:black;
+			}
+			
+			.y.axis line{
+				stroke: grey;				
+				stroke-dasharray: 3;
+			}
+			
+			.yLabel{
+				font-size: 24px;
+					position: relative;
+					font-family: 'Oswald', sans-serif;
+					text-align: center;
+					transform:rotate(-90deg);
+				-ms-transform:rotate(-90deg); /* IE 9 */
+				-webkit-transform:rotate(-90deg); /* Safari and Chrome */
+			}
+			
+			.xLabel{
+				bottom:30px;
+				font-size: 24px;
+				position: relative;
+				font-family: 'Oswald', sans-serif;
+				text-align: center;
+			}
+			
+			.axis text{
+				font-family: 'Oswald', sans-serif;
+				font-size:11px;
+				fill:olive;
+			}
+			
+			p{
+				color:olive;
+			}
+			
+			svg{
+				
+			}
+			
+			.label{
+				font-size:17px;
+				font-family: 'Oswald', sans-serif;
+			}
+			.title{
+				font-size: 28px;
+				left: 67px;
+				position: relative;
+				color: rgba(50,50,50,.5);
+				font-family: 'Oswald', sans-serif;
+			}
+			
+			.toggle{
+				position: relative;
+				left: 643px;
+				top: 40px;
+				height: auto;
+				width: 300px;
+			}
+			
+			.toggle ul{
+				list-style-type:none;
+				width: 300px;
+			}
+			
+			.ser-label{
+				margin-left: 20px;
+			}
+			
+			canvas{
+				position: absolute;
+				margin-top: 4px;
+			}
+			
+			.data-popup{
+				position: absolute;
+				background: blueviolet;
+				border-radius: 5px;
+				font-family: 'Oswald', sans-serif;
+				color: white;			
+			}
+			
+			canvas{
+				cursor:pointer;
+			}
+			
+			text {
+			 font: 10px sans-serif;
+			 font-family: 'Oswald', sans-serif;
+			}
+			
+			.axis path,
+			.axis line {
+			  fill: none;
+			  stroke: #000;
+			}
+			
+			form {
+			  position: absolute;
+				left: 800;			  
+				top: 10px;
+				z-index:100;
+			}
+			
+		</style>
+	<script>
+	var _dir = "data";
+	$(function(){
+		var url="config/bar.json";
+		
+		AutoGraph.initialize(url, true);
+	});
+		
+			
+			
+		</script>
+	
+	</head>
+	<body>
+	
+	<div id="container"></div>
+		
+	
+		
+	</body>
+</html>

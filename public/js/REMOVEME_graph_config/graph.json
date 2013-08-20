@@ -1,0 +1,132 @@
+{
+  "graphTypes": [
+    
+    
+    
+    
+    {
+      "graphType":"minmax_temp",
+      "graphClass": "scatterplot",
+      "width":900,
+      "height":500,
+      "padding":70,
+      "xOffset":200,
+      "yOffset":20,
+      "title": "Annual Minimum and Maximum of Monthly Average Temperatures",
+      "title_size":"20px",
+ 
+	  "ylab":"Temperature (degrees C)",
+      "xlab":"Year",
+      "label_size":"20px",
+      "xtick_interval": 10,
+      "xlab_interval": 20,
+      "ytick_interval":10,
+      "ylab_interval":10,
+      "ycolumn_min":"min_monthly_temp",
+      "ycolumn_max":"max_monthly_temp",
+      "series": [
+          {
+            "directory":"js/REMOVEME_data/",
+            "enabled":true,
+            "csvfilename":"minmax_temp_historic.csv",
+            "ycolumn":"min_monthly_temp",
+            "serieslab":"Historic Minimum Monthly",
+             "color":null,
+            "stroke":"blue",
+            "symbol":"diamond",
+            "symbolsize":19
+          },
+          {
+            "directory":"js/REMOVEME_data/",
+            "enabled":true,
+            "csvfilename":"minmax_temp_historic.csv",
+            "ycolumn":"max_monthly_temp",
+            "serieslab":"Historic Maximum Monthly",
+            "color":null,
+            "stroke":"red",
+            "symbol":"diamond",
+            "symbolsize":19
+          },
+          {
+            "directory":"js/REMOVEME_data/",
+            "enabled":true,
+            "csvfilename":"minmax_temp_modeled.csv",
+            "ycolumn":"min_monthly_temp",
+            "serieslab":"Stochastic Future Minimum Monthly",
+            "color":"steelgray",
+            "stroke":null,
+            "symbol":"diamond",
+            "symbolsize":19
+          },
+          {
+            "directory":"js/REMOVEME_data/",
+            "enabled":true,
+            "csvfilename":"minmax_temp_modeled.csv",
+            "ycolumn":"max_monthly_temp",
+            "serieslab":"Stochastic Future Maximum Monthly",
+            "color":"pink",
+            "stroke":null,
+            "symbol":"diamond",
+            "symbolsize":19
+          }
+      ]
+    },
+    
+    
+    
+    
+    
+    
+    
+    
+    {
+      "graphType":"annual_precip",
+      "graphClass": "scatterplot",
+      "title": "Total Annual Precipitation",
+      "ylab":"Precipitation (inches)",
+      "xlab":"Year",
+      "width":900,
+      "height":500,
+      "padding":70,
+      "xOffset":200,
+      "yOffset":20,
+      "xtick_interval": 5,
+      "xlab_interval": 20,
+      "ytick_interval":5,
+      "ylab_interval":10,
+      "ycolumn_min":"annual_precip",
+      "ycolumn_max":"annual_precip",
+      "series": [
+        {
+            "directory":"js/REMOVEME_data/",
+          "csvfilename":"annual_precip_historic.csv",
+          "ycolumn":"annual_precip",
+            "enabled":true,
+          "serieslab":"Historic",
+           "color":null,
+            "stroke":"blue",
+          "symbol":"circle",
+          "symbolsize":19
+        },
+        {
+            "directory":"js/REMOVEME_data/",
+            "enabled":true,
+          "csvfilename":"annual_precip_modeled.csv",
+          "ycolumn":"annual_precip",
+          "serieslab":"Stochastic Future",
+           "color":"green",
+            "stroke":null,
+          "symbol":"circle",
+          "symbolsize":19
+        }
+      ]
+    }
+    
+    
+    
+    
+    
+    
+  ]
+}
+  

@@ -1,0 +1,30 @@
+#! /bin/bash
+
+if [ $# -lt 1 ]
+then
+    echo "Usage: run-streams [start|stop|restart]"
+    exit
+fi
+
+if [ ! -d logs ]
+then
+    mkdir logs
+fi
+
+if   [ "$1" = "start" ]
+then
+    echo "Starting Streams Server"
+    forever start -a -l streams.log -o logs/out.log -e logs/err.log app.js
+elif [ "$1" = "stop" ]
+then
+    echo "Stopping Streams Server"
+    forever stop app.js
+elif [ "$1" = "restart" ]
+then
+    echo "Restarting Streams Server"    
+    forever restart app.js
+else
+    echo "Unknown option: $1"
+    echo "Usage: run-streams [start|stop|restart]"
+    exit
+fi

@@ -1,0 +1,470 @@
+body {
+  z-index : -500;
+  position: absolute;
+  top     : 0;
+  left    : 0;
+  height  : 100%;
+  width   : 100%;
+  margin  : 0;
+  overflow: hidden;
+ 
+}
+
+.infowindow {
+  font-size: 12px;
+  font-family: arial;
+  color: white;
+  margin-top: 8px;
+  background: green;
+  padding: 5px;
+}
+
+.error {
+  color: red;
+}
+
+div#rscript {
+  margin-top: 10px;
+}
+
+
+
+
+div#inst {
+  width : 250px;
+  height: 600px;
+  margin-left: -10px;
+  margin-top: -40px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: white;
+  box-shadow: 5px 5px 5px #888888;
+  z-index: 300;
+  font-family: Arial;
+  font-size: 11px;
+}
+
+#app-control {
+  position: absolute;
+  width   : 400px;
+  height  : 600px;
+  top: 50px;
+  right: 100px;
+  padding: 10px;
+  border: 1px solid black;
+  background-color: white;
+  box-shadow: 5px 5px 5px #888888;
+  z-index: 300;
+  font-family: Arial;
+  font-size: 11px;  
+}
+
+div#loader {
+ 
+}
+
+div#loader > #msg img {
+  display: inline;
+  float: right;
+  margin-right: 5px;
+}
+
+div#prompt_header {
+  margin-top: 10px;
+  clear: both;
+}
+
+div#map {
+display: block;
+position: absolute;
+top: 0;
+z-index: 0;
+border: 1px solid black;
+top: 40px;
+left: 400px;
+right: 400px;
+width: 40%;
+height: 540px;
+	box-shadow: 1px 5px 15px 0px #4D4D4D;
+}
+
+
+div#map .gmnoprint{
+	position:absolute;
+}
+
+div#logos {
+	left:10px; 
+	bottom:10px; 
+	margin-bottom:100px; 
+	margin-left:10px;
+	position:absolute;
+  	opacity:1;
+	z-index: 1;
+	width: 100px;
+}
+
+div#logos ul{
+	list-style-type: none;
+}
+
+div#logos ul li > img {
+  display: block;
+  vertical-align: middle;
+}
+
+div#logos ul li {
+  display: inline-block;
+  
+}
+
+div#logos > p {
+  font-size: 10px;
+  color: blue;
+}
+
+div#user {
+  position: fixed;
+  z-index:0;
+  background:rgba(200,200,200, .8);
+}
+
+div#user.stepsState{
+	width:100px;
+}
+
+div#user > p {
+  margin-top:0px;
+  font-size: large;
+  color: blue;
+  
+}
+
+div#user a{
+	margin-top:0px;
+	text-align:center;
+	width:100%;
+	font-size: large;
+	color:blue;
+}
+
+div#backgroundGraphic{
+	position:absolute;
+	width:100%;
+	height:100%;
+	background:url(../images/bkgd-iced-lake.jpg);
+	background-size:100% 100%;
+	left:0;
+	top:0;
+}
+
+span#beta {
+	width: 60px;
+	vertical-align: middle;
+	font-size: 17px;
+	font-family: sans-serif;
+	color: orangeRed;
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	text-shadow: 0.15em 0.15em 0.2em black;
+
+
+}
+
+/* weather app */
+#weather-models-app #loader #message img {
+  margin-right: 5px;
+  width:200px;
+}
+
+
+#fish-models-app{
+	position:static;
+}
+
+
+
+.basinSelection-control{
+	
+	-o-transition: all 1s ease-out;
+	-ms-transition: all 1s ease-out;
+	-moz-transition: all 1s ease-out;
+	-webkit-transition: all 1s ease-out;
+	position:absolute;
+	overflow:hidden;
+	top:40px;
+	left:40px;
+	width:350px;
+	height:550px;
+	z-index:1;
+}
+
+.basinSelection-control.select-basin{
+	height:400px;
+}
+
+.basinSelection-control.drainage-model{
+	height:600px;
+}
+
+.basinSelection-control.get-basin{
+	height:100px;
+}
+
+.basinSelection-control.full-height{
+	height:1000px;
+}
+
+
+.basinApplication{
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	height:100%;
+}
+
+.basinList{
+	cursor:pointer;
+	list-style-type: none;
+	font-weight:400;
+	margin-left:-3px;
+	overflow-y:scroll;
+	height:261px;
+}
+
+.basinSelector{
+	overflow:hidden;
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	margin-right:0px;
+	width:300px;
+}
+
+.basinSelector li{
+	/* -- transition is the magic sauce for animation -- */
+	display: inline-block;
+	width: 250px;
+	left: 50%;
+	margin-left: -18px;
+	overflow: hidden;
+}
+
+
+.basinSelector .toggle{
+	position:absolute;
+	top:0px;
+	left:0;
+	z-index:10;
+	width:30px;
+	height:536px;
+	background:#f7e7b5;
+	border-style:solid;
+	border-width:2px;
+	border-color:#ffbe57;
+	box-shadow: 1px 5px 14px -3px #4D4D4D;
+}
+
+.basinSelector li .content {
+	-o-transition: all .4s ease-in-out;
+	-ms-transition: all .4s ease-in-out;
+	-moz-transition: all .4s ease-in-out;
+	-webkit-transition: all .4s ease-in-out;
+	position: absolute;
+	top: -14px;
+	left: -10px;
+	margin-left: 41px;
+	margin-top: 15px;
+	width: 300px;
+	height: 540px;
+	background: white;
+	box-shadow: 1px 5px 15px 0px #4D4D4D;
+}
+
+.basinSelector .toggle .title{
+	position:absolute;
+	text-align:center;
+	right:-260px;
+	color:#397CC4;
+	font-size:20px;
+	top:50%;
+	font-weight:900;
+	width:550px; -moz-transform: rotate(-90deg);  /* FF3.5+ */
+       -o-transform: rotate(-90deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(-90deg);  /* Saf3.1+, Chrome */
+             filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=-90);  /* IE6,IE7 */
+         -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=-90)"; /* IE8 */
+}
+
+
+
+/* Steps Control */
+div#steps-control{
+	width:1000px;
+	height:1000px;
+	background:black;
+	position:absolute;
+	top:50px;
+	right:-700px;
+	z-index:2000;
+}
+
+.steps{
+	position:absolute;
+		
+	right:310px;
+	top:10px;
+	opacity:1;
+	
+	
+	
+}
+.steps.active{
+	opacity:1;	
+}
+
+.application {
+	text-align: center; 
+	color:black;
+	width:100%;
+	height:100%;
+	margin-bottom:10px;
+	background:white;
+	opacity:1;
+	color:#1C94C4;
+	-webkit-touch-callout: none;
+			-webkit-user-select: none;
+			-khtml-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+}
+
+
+table{
+	width:300px;
+}
+
+#accordion .ui-slider{
+	z-index: 0;
+	margin-left:50px;
+	width:300px;
+}
+
+.application .ui-slider{
+	z-index: 0;
+
+}
+
+#fish-models-app .ui-slider{
+	width:310px;
+}
+
+#map{
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+}
+
+
+#basinList li{
+	text-align:center;
+	font-weight:900;
+	margin-top:20px;
+	height:20px;
+	border-style:solid;
+	border-width:2px;
+	border-color:#ffbe57;
+}
+
+#basinList li:hover{
+	text-align:center;
+	font-weight:900;
+	font-size:16px;
+	border-style:solid;
+	border-width:2px;
+	border-color:#ffbe57;
+	
+}
+
+.panelBackground{
+	-o-transition: all .5s ease-out;
+	-ms-transition: all .5s ease-out;
+	-moz-transition: all .5s ease-out;
+	-webkit-transition: all .5s ease-out;
+	
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:6200px;
+	background:#ffffff;
+	opacity:0;
+	pointer-events:none;
+}
+
+canvas{
+	left:-3px;
+	top:34px
+}
+
+.application input{
+	width:20px;
+}
+
+.app{
+	display:none;
+}
+
+.app .active{
+	display:block;
+}
+
+.application .custom-ui-icon{
+	position: relative;
+	left: 362px;
+	top: 10px;
+	width: 36px;
+	margin-bottom: -46px;
+	height: 36px;
+	background: url('../images/minimize.png');
+	cursor:pointer;
+}
+
+
+#info{
+	width:300px;
+	text-align:center;
+}
+
+
+#loadingWindow{
+	position:absolute;
+	width:300px;
+	height:200px;
+	left:50%;
+	margin-left:-250px;
+	top:40%;
+	background:white;
+	border-style: solid;
+	border-width: 3px;
+	border-color: #ffbe57;
+}
+
+#loadingWindow h1{
+	text-align: center;
+	margin-top:80px;
+}
+
+.shadowBox{
+	position: absolute;
+	left:-100px;
+	width:100%;
+	height:5000px;
+	background:rgba(0,0,0, .6);
+}
+

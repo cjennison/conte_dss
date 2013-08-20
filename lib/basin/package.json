@@ -1,0 +1,7 @@
+{
+  "name": "basin",
+  "version": "0.0.1",
+  "author": "Tim; Kun",
+  "description": "a library for basin delineation support.",
+  "main": "./basin.js"
+}
