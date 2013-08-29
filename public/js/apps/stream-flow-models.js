@@ -1,6 +1,7 @@
 var flow = Step.extend({
 	name:'flow',
 	dom:'#environmental-models-app',
+	position:4,
 	preceded:['barrier','climate','land'],
 
 	populateInput:function(options, isDOM){
@@ -56,8 +57,8 @@ var flow = Step.extend({
 
 	},
 
-	getInfo:function(){
-		var vars = this._super();
+	getInfo:function(source){
+		var vars = this._super(source);
 
 		var flow_model = {
 			step:"flow",

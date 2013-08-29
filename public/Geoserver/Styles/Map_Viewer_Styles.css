@@ -1,0 +1,265 @@
+.olcontrolAttribution {
+	position:fixed;
+	bottom:20px;
+	left:5px;
+	}
+
+#legend {
+	padding: 5px;
+	font-family:Arial,Helvetica,sans-serif;
+	font-weight: bold;
+	font-size: small;
+	width: 18%;
+	min-width: 200px;
+	height: 99%;
+	background-color: #6495ED;
+	border-style: solid;
+	border-color: #000000;
+	border-width: 2px;
+	float: left;
+	overflow-y:scroll;
+	}
+
+#panel {
+	width: 80%;
+	height: 34px;
+	float: left;
+	background-color: #A9A9A9;
+	border-style: solid;
+	border-bottom-style: none;
+	border-left-style: none;
+	border-color: #000000;
+	border-width: 2px;
+	}
+
+#map {
+	width: 80%;
+	height: 91%;
+	max-height:91%;
+	border-style: solid;
+	border-left-style: none;
+	border-width: 2px;
+	border-color: #000000;
+	float:left;
+	}
+
+#scaleline-id {
+	width: auto;
+	height: 25px;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: xx-small;
+	float: left;
+	margin-left: 30%;
+	margin-top: 2px;
+	font-weight: bold;
+	}
+
+#scale-id {
+	width: auto;
+	height: 25px;
+	margin-top: 2px;
+	margin-left: 5px;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: small;
+	float:left;
+	}
+
+#location {
+	width: auto;
+	height: 25px;
+	font-family:Arial,Helvetica,sans-serif;
+	font-size: small;
+	float: right;
+	margin-right: 9px;
+	margin-top: 2px;
+	bottom: 0;
+	}
+
+.olControlZoomInItemInactive {
+    	background-image: url("../Images/zoom-plus-mini.png");
+	background-repeat: no-repeat;
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+	}
+
+.olControlZoomOutItemInactive {
+    	background-image: url("../Images/zoom-minus-mini.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+	}
+
+.olControlZoomToMaxExtentItemInactive {
+    	background-image: url("../Images/zoom-world-mini.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+	}
+
+.olControlZoomBoxItemInactive { 
+    	background-image: url("../Images/drag-rectangle-off.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+        
+.olControlZoomBoxItemActive { 
+    	background-image: url("../Images/drag-rectangle-on.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+
+.olControlZoomBoxOutItemInactive { 
+    	background-image: url("../Images/drag-rectangle-out-off.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+        
+.olControlZoomBoxOutItemActive { 
+    	background-image: url("../Images/drag-rectangle-out-on.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+
+
+.olControlNavigationItemInactive { 
+    	background-image: url("../Images/panning-hand-off.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+
+.olControlNavigationItemActive { 
+    	background-image: url("../Images/panning-hand-on.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+
+.olControlNavHist {
+	background-image: url("../Images/navigation_history.png");
+	background-repeat: no-repeat;
+	float: left;
+	width: 24px;
+	height: 24px;
+    	border: 2px solid #000000;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+	}
+
+.olControlNavHistPreviousItemActive {
+	background-position: 0 0;
+	}
+
+.olControlNavHistPreviousItemInactive {
+	background-position: 0 -24px;
+	}
+
+.olControlNavHistNextItemActive {
+	background-position: -24px 0;
+	}
+
+.olControlNavHistNextItemInactive {
+	background-position: -24px -24px;
+	}
+
+.olControlWMSGetFeatureInfoItemActive {
+    	background-image: url("../Images/identify-on.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+
+.olControlWMSGetFeatureInfoItemInactive {
+    	background-image: url("../Images/identify-off.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+
+.olControlDownloadItemActive {
+    	background-image: url("../Images/download-on.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }
+
+
+.olControlDownloadItemInactive {
+    	background-image: url("../Images/download-off.png");
+    	border: 2px solid #000000;
+    	float: left;
+	height: 24px;
+	width: 24px;
+    	margin-top: 3px;
+    	margin-right: 5px;
+	margin-bottom: 5px;
+	cursor : pointer;
+        }

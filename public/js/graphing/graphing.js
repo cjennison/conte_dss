@@ -32,12 +32,12 @@ var Graphing = {
 			var shadow_box = $("<div id='graphShadowBox'></div>");
 			
 			var div = $('#graphBoxContainer');
-			var graph_div = $("<div class='graphDiv' data-disabled='false' zoomed='false' graph_num=" + i + "></div>");
+			var graph_div = $("<div class='graphDiv' id='graphBox" + i + "' data-disabled='false' zoomed='false' graph_num=" + i + "></div>");
 			var graph_minimizeHandle = $("<div id='minimize_handle'></div>");
 			var graph_maximizeHandle = $("<div id='maximize_handle'></div>");
 
 			var bar = $('#graphBar');
-			var graphBar_div = $("<div class='graphDiv' data-disabled='true' zoomed='false' graph_num=" + i + "><p></p></div>");
+			var graphBar_div = $("<div class='graphDiv'  data-disabled='true' zoomed='false' graph_num=" + i + "><p></p></div>");
 
 			$(bar).append(graphBar_div);
 			
@@ -168,6 +168,13 @@ var Graphing = {
 				$(this).parent().css('height', '700px');
 				$(this).css('background-image', 'url(../images/restore_down_for_graphs.png)');
 				$(this).parent().parent().append(shadow_box);
+				console.log("ADDED ZOOM CLASS")
+				console.log($(this).parent().parent());
+				var graphbox = $(this).parent();
+				console.log(graphbox);
+				//console.log($(graphbox + ' svg');
+				$(graphbox).find("svg").attr("class", "svg_zoomed");
+				console.log($(graphbox).find("svg"));
 			}
 			else{
 				$(this).parent().attr('zoomed', 'false');
@@ -179,8 +186,14 @@ var Graphing = {
 				$(this).parent().css('z-index', '0');
 				$(this).parent().css('width', '590px');
 				$(this).parent().css('height', '350px');
+				//$(this + " svg").removeClass("svg_zoomed");
 				$(this).css('background-image', 'url(../images/maximize_for_graphs.png)');
 				$(shadow_box).detach();
+				console.log("REMOVED ZOOM CLASS")
+				var graphbox = $(this).parent();
+
+				$(graphbox).find("svg").attr("class", "");
+
 			}
 		});
 		$(shadow_box).click(function(){
@@ -199,6 +212,11 @@ var Graphing = {
 					$('#graphBoxContainer [graph_num="' + i + '"]').css('margin', '0px');
 					$('#graphBoxContainer [graph_num="' + i + '"]').css('z-index', '0');
 					$('#graphBoxContainer [graph_num="' + i + '"] #maximize_handle').css('background-image', 'url(../images/maximize_for_graphs.png)')
+					console.log("REMOVED ZOOM CLASS")
+					//var graphbox = $(this).parent();
+
+					$('#graphBoxContainer [graph_num="' + i + '"]').find("svg").attr("class", "");
+
 				}
 			}
 		})
@@ -209,14 +227,14 @@ var Graphing = {
 	},
 	
 	plotGraphs : function(stepID){
-		//var d = $.post('/output/getAllGraphsOfStep', {stepID:'6065973d-2cb7-4b77-bffe-55bd8ed0a1cf'})
-		var d =$.post('/output/getBaseAndParent',{'stepID':stepID});
+		var d = $.post('/output/getAllGraphsOfStep', {stepID:stepID})
+		//var d =$.post('/output/getBaseAndParent',{'stepID':stepID});
 		var int = setInterval(function(){
 			if(d.readyState == 4){
 				clearInterval(int);
-				//Graphing.buildInteractiveGraphs(d.responseText);
+				Graphing.buildInteractiveGraphs(d.responseText);
 
-				Graphing.buildGraphInformation(d.responseText);
+				//Graphing.buildGraphInformation(d.responseText);
 			}
 		},1000);
 	},
@@ -225,7 +243,17 @@ var Graphing = {
 	buildInteractiveGraphs:function(data){
 		var stepdata = JSON.parse(data);
 		var stepdata = stepdata.config;
-		AutoGraph.initialize(stepdata, false, ['#graphBoxContainer [graph_num="0"]','#graphBoxContainer [graph_num="1"]','#graphBoxContainer [graph_num="2"]','#graphBoxContainer [graph_num="3"]']);
+		console.log(stepdata);
+		var graph_array = [];
+		for(var i = 0; i < stepdata.graphTypes.length;i++){
+			graph_array.push("#graphBox" + i + "");
+			$("#graphBox" + i + "").show();
+		}
+		console.log(graph_array);
+		AutoGraph.initialize(stepdata, false, graph_array);
+		//$('#graphBoxContainer [graph_num="0"]').show();
+
+		//AutoGraph.initialize(stepdata, false, ['#graphBoxContainer [graph_num="0"]','#graphBoxContainer [graph_num="1"]','#graphBoxContainer [graph_num="2"]','#graphBoxContainer [graph_num="3"]']);
 	},
 		
 	buildGraphInformation : function(data){

@@ -81,7 +81,7 @@ top: 0;
 z-index: 0;
 border: 1px solid black;
 top: 40px;
-left: 400px;
+left: 500px;
 right: 400px;
 width: 40%;
 height: 540px;
@@ -195,7 +195,7 @@ span#beta {
 	overflow:hidden;
 	top:40px;
 	left:40px;
-	width:350px;
+	width:450px;
 	height:550px;
 	z-index:1;
 }
@@ -247,7 +247,7 @@ span#beta {
 .basinSelector li{
 	/* -- transition is the magic sauce for animation -- */
 	display: inline-block;
-	width: 250px;
+	width: 348px;
 	left: 50%;
 	margin-left: -18px;
 	overflow: hidden;
@@ -278,7 +278,7 @@ span#beta {
 	left: -10px;
 	margin-left: 41px;
 	margin-top: 15px;
-	width: 300px;
+	width: 415px;
 	height: 540px;
 	background: white;
 	box-shadow: 1px 5px 15px 0px #4D4D4D;
@@ -315,7 +315,7 @@ div#steps-control{
 .steps{
 	position:absolute;
 		
-	right:310px;
+	right:200px;
 	top:10px;
 	opacity:1;
 	
@@ -350,7 +350,8 @@ table{
 
 #accordion .ui-slider{
 	z-index: 0;
-	margin-left:50px;
+	margin-left:auto;
+	margin-right:auto;
 	width:300px;
 }
 
@@ -407,9 +408,12 @@ table{
 	pointer-events:none;
 }
 
+.kineticjs-content{
+	top: 21px;
+}
+
 canvas{
 	left:-3px;
-	top:34px
 }
 
 .application input{
@@ -426,11 +430,12 @@ canvas{
 
 .application .custom-ui-icon{
 	position: relative;
-	left: 362px;
 	top: 10px;
-	width: 36px;
+	width: 36px;	
 	margin-bottom: -46px;
 	height: 36px;
+	margin-left: auto;
+	right: 4px;
 	background: url('../images/minimize.png');
 	cursor:pointer;
 }

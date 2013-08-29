@@ -56,12 +56,15 @@ exports.posttext = function (req, res) {
 
 
 exports.getRunDatabase = function(req, res){
-		if(user = undefined){return;}
+		//if(user = undefined){return;}
 
 	var username = req.session.user.name;
 	var basinId = req.body.basinId;
 	console.log("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX")
-	
+	if(username == undefined){
+		res.redirect("/");
+		return;
+	} 
 	database.getRunDatabase(username, function(data){
 		var run_list = data;
 					if(run_list == undefined){
@@ -81,10 +84,10 @@ exports.getRunDatabase = function(req, res){
 					}
 					*/
 					console.log("RUN LIST -------------------")
-					console.log(run_list);
+					//console.log(run_list);
 					
 					function findChildren(p){
-			           	console.log("Looking for objects with parent of " + p.stepID)
+			           //	console.log("Looking for objects with parent of " + p.stepID)
 			           	for(var i=0;i<run_list.length;i++){
 			           		//console.log("PARENT: " + run_list[i].parent);
 			           		//console.log("CHILD: " + p.stepID)
@@ -102,13 +105,13 @@ exports.getRunDatabase = function(req, res){
 			           	}
 			           }
 	        		
-	       			console.log("TREE ------------------  ")
-	       			 console.log(tree);
+	       			//console.log("TREE ------------------  ")
+	       			// console.log(tree);
 	       			 
 	       			 
-	       			 console.log("FINDING THE BASIN PARENTS:" + run_list.length)
+	       			// console.log("FINDING THE BASIN PARENTS:" + run_list.length)
 	       			  for(var x = 0; x < run_list.length;x++){
-	       			  	console.log(run_list[x].parent)
+	       			  	//console.log(run_list[x].parent)
 			        	if(run_list[x].parent == "basin"){
 			        		if(run_list[x].basinid == basinId){
 			        			tree.children.push(run_list[x]);
@@ -119,7 +122,7 @@ exports.getRunDatabase = function(req, res){
 			        
 	
 					
-					console.log("WRITING INFORMATION TO "+ "/home/node.js/users/" + username + "/data.json" )
+					//console.log("WRITING INFORMATION TO "+ "/home/node.js/users/" + username + "/data.json" )
 					var file = "/home/node.js/users/" + username + "/data.json";
 					fs.writeFile(file, JSON.stringify(tree), function (err){
 						if(err){
@@ -167,7 +170,9 @@ exports.login_user = function (req, res) {
     console.log(user);
     
     user.findUser(user.name);
-    res.redirect('/dashboard');
+    	res.redirect('/streams');
+
+	//res.redirect('/dashboard');
   }
 };
 

@@ -73,16 +73,20 @@ var Step = Class.extend({
 	step_id: null,
 	preceded:[],
 	config:null,
-	skipped:false,
+	skipped:true,
+	state:"NO MODEL", //COMPLETED, NO MODEL
 	type:null,
+	managed:false,
+	position:-1,
+	unable_to_run:false,
 	
 	getRuns: function(){
 		var that = this;
-		console.log(this);
+		//console.log(this);
 		
-
+		this.setNoRun(true);
 		var runs = $.post('/users/script/runs', {'scriptname': this.name, 'basin_id':Streams.app_control.apps.basin.basinId});
-		console.log(runs);
+		//console.log(runs);
 		var check = setInterval(function(){
 			console.log("[STEP]");
 
@@ -93,7 +97,7 @@ var Step = Class.extend({
 				
 				that.populateRunList(data);
 			}
-		}, 100);
+		}, 1000);
 	},
 
 	populateRunList: function(rundata){
@@ -105,8 +109,8 @@ var Step = Class.extend({
 		});
 		var selectorList = $(this.dom + " .runTypeSelect .selectRun");
 		var option = $("<option>Select a Completed Run</option>");
-		selectorList.append($("<option>Select a Completed Run</option>"));
-		selectorList.append($("<option>Skip this Step</option>"));
+		selectorList.append($("<option style='opacity:.5'>Select Run from Dropdown</option>"));
+		//selectorList.append($("<option>Skip this Step</option>"));
 
 
 
@@ -140,8 +144,8 @@ var Step = Class.extend({
 		
 		selectorList.change(function(){
 			console.log("U WOT");
-			if($(that.dom + " .runTypeSelect .selectRun option:selected").html() == "Select a Completed Run"){
-				that.createAndRefresh();
+			if($(that.dom + " .runTypeSelect .selectRun option:selected").html() == "Select Run from Dropdown"){
+				//that.createAndRefresh();
 			} else if($(that.dom + " .runTypeSelect .selectRun option:selected").html() == "Skip this Step"){
 				that.skipStep();				
 
@@ -169,40 +173,57 @@ var Step = Class.extend({
 	evaluateAvailableModels:function(){
 		//console.log("EVAL");
 		//this.enableInputs();
-		$("select option[val!='No Existing Runs Found']").prop("disabled", false);
+		if(this.config == null){ 
+			console.log("NO CONFIG");
+			return; 
+		}
 		for(var i = 0;i<this.config.length;i++){
 			var script = this.config[i].script,
 			      reqs = this.config[i].requirements;
-			
-			for(var j = 0;j < reqs.length;j++){
-				var script_set = reqs[j].script; //An array of accepted script classes
-				if(script_set.indexOf(null) > -1){
-					console.log(script + " does not require scripts from " + reqs[j].step);
-				}
-				
-				else {
-					console.log(script_set);
-					if(script_set.indexOf(Streams.app_control.apps[reqs[j].step].type) < 0 || Streams.app_control.apps[reqs[j].step].skipped == true){
-						console.log(script + " cannot run because " + Streams.app_control.apps[reqs[j].step].step + " has an incompatible type");
-						$("select option").filter(function() {
+
+			if(this.config[i].disabled == true){
+				console.log("DISABLED SCRIPT: " + script);
+				$("select option").filter(function() {
    							 return $(this).val() == script; 
 							}).prop('disabled', true);	
+				
+			} else {
+				for(var j = 0;j < reqs.length;j++){
+					var script_set = reqs[j].script; //An array of accepted script classes
+					if(script_set.indexOf(null) > -1){
+						console.log(script + " does not require scripts from " + reqs[j].step);
+					}
+				
+					else {
+						console.log(script_set);
+					
+						if(script_set.indexOf(Streams.app_control.apps[reqs[j].step].type) < 0 || Streams.app_control.apps[reqs[j].step].skipped == true){
+							console.log(script + " cannot run because " + Streams.app_control.apps[reqs[j].step].step + " has an incompatible type");
+							$("select option").filter(function() {
+   								 return $(this).val() == script; 
+								}).prop('disabled', true);	
+							console.log("I HAVE ENCOUNTERED AN ERROR");
+							break;
+						} else {
+							$("select option").filter(function() {
+   								 return $(this).val() == script; 
+								}).prop('disabled', false);	
+
+						}
+						console.log(j + " out of " +(reqs.length - 1));	
+						
+						if(j == (reqs.length - 1)){
+							$("select option").filter(function() {
+   								 return $(this).val() == script; 
+								}).prop('disabled', false);	
+							this.unable_to_run = false;	
+
+						}			
 					}				
 				}
-				
-				
-				//console.log(reqs[j].step);
-				/* Old FORCED Trick
-				if(reqs[j].forced == true){
-					if(Streams.app_control.apps[reqs[j].step].skipped == true){
-						$("select option").filter(function() {
-   							 return $(this).val() == script; 
-							}).prop('disabled', true);					
-					}
-				}
-				*/
-				
 			}
+			
+			
 			
 		}
 		var opts = $(this.dom + " .styledSelect .selectRun option");
@@ -213,15 +234,31 @@ var Step = Class.extend({
 				num_disabled++;
 			}
 		}
-		console.log(num_disabled + " : " + opts.length); 
+		//console.log(num_disabled + " : " + opts.length); 
 		if(num_disabled == opts.length && num_disabled > 0){
 			console.log("DISABLING");
 			this.disableInputs();
-						
-		} else {
-			
-		}
+			this.unable_to_run = true;	
+			this.state = "NO MODEL";
+			$(this.dom + " #new-run-button").addClass("disable");	
+			$(this.dom + " .NEW-RUN").css("display","none");
+			$(this.dom + " .SAVED-RUN").css("display","none");
 		
+			$(this.dom + " .SAVED-RUN select").prop("disabled",false);
+			var btns = $(this.dom + " .r-btn");
+			console.log(btns);
+			for(var i = 0;i < btns.length; i++){
+				$(btns[i]).removeClass("active");
+			}
+			$(this.dom + " #no-run-button").addClass("active");
+	
+		} else {
+			this.unable_to_run = false;	
+			$(this.dom + " #new-run-button").removeClass("disable");		
+		}
+		if(this.state == "NO MODEL"){
+			this.disableInputs();
+		}
 		console.log("THERE ARE THIS MANY DISABLED: " + num_disabled + " " + this.dom);
 	},
 
@@ -231,12 +268,12 @@ var Step = Class.extend({
 		var that = this;
 		this.skipped = false;
 
-		for(var name in Streams.app_control.apps){
-			if(name != 'basin'){
-				Streams.app_control.apps[name].evaluateAvailableModels();
-			}
+		//for(var name in Streams.app_control.apps){
+			//if(name != 'basin'){
+			//	Streams.app_control.apps[name].evaluateAvailableModels();
+			//}
 			
-		}
+		//}
 
 
 		if(isDOM == true){
@@ -244,18 +281,24 @@ var Step = Class.extend({
 			pre_thumblist.push({
 				url:Streams.user + "/" + this.name + "/" + data.stepid + "/"
 			});
+			
 			Graphing.plotGraphs(data.stepid);
 			this.step_id = data.stepid;
+			
 		} else {
 			console.log("[STEP] I AM SETTING THE SELECTOR NOW");
 			data = options;
 			this.step_id = data.stepID;
+			//this.markThisAndParents("input");
+			this.setSavedRun();
 			var selectorList = $(this.dom + " .runTypeSelect .selectRun");
 			$(selectorList).val(data.alias);
 		}
 
-		that = this;
+		this.state = "SAVED RUN";
 
+		that = this;
+		//this.markThisAndParents("input");
 		//AJAX REQUEST
 		var step_data = $.post('/output/getStepInfo', {'stepID':that.step_id});
 		function getStep(){
@@ -324,6 +367,8 @@ var Step = Class.extend({
 					url:Streams.user+ "/" + that.name + "/" + stepID + "/",
 					skipped:step.skipped
 				})
+
+				data.message.reverse();
 				console.log("MESSAGE SET: ---------------------------- ")
 				console.log(data.message);
 				for(var i = 0;i < data.message.length;i++){
@@ -335,7 +380,8 @@ var Step = Class.extend({
 					})
 				}
 				
-				that.buildThumbnailList(pre_thumblist);
+				that.markThisAndParents("input");
+				//that.buildThumbnailList(pre_thumblist);
 	  		
 	  		})
 	},
@@ -354,8 +400,9 @@ var Step = Class.extend({
 		$(this.dom + ' ' + '#' + $(model).val()).addClass("active")
 		
 		if(data.skipped == "true"){
-			var selectorList = $(this.dom + " .runTypeSelect .selectRun");
-			$(selectorList).val("Skip this Step");
+			//var selectorList = $(this.dom + " .runTypeSelect .selectRun");
+			//$(selectorList).val("Skip this Step");
+			this.setNoRun();
 
 		}
 
@@ -422,7 +469,43 @@ var Step = Class.extend({
 			$(createNew).bind('click', function(){
 				that.createAndRefresh();
 			});
+		
+		// START TOOL BAR
+			console.log("RADIO BUTTONS");
+			console.log($(this.dom + " .r-btn"));
+			$(this.dom + " .r-btn").bind('click', function(e){
+				
 			
+				
+
+			});
+			$(this.dom + " #new-run-button").click(function(e){
+				if(that.unable_to_run == false){
+					that.state = "NEW RUN";
+					that.setNewRun();
+				}
+				
+				
+	
+			})
+			$(this.dom + " #saved-run-button").click(function(e){
+					
+				that.setSavedRun();
+
+			})
+			$(this.dom + " #no-run-button").click(function(e){
+				that.state = "NO MODEL";	
+				that.setNoRun();
+			})
+
+
+
+		// END TOOL BAR
+				
+		//$(this.dom + " .app_content").bind('click', function(e){
+			
+		//});		
+
 		//Model
 		var model = $(this.dom + ' .styledSelect select');
 		model.change(function(){
@@ -452,14 +535,101 @@ var Step = Class.extend({
 					
 
 				}
-			
 			}
-
-
 		})
+		if(this.managed){
+			//this.configureManagement();	
+		}
+		
 
-				
+			
 		this.configureModels();
+	},
+
+	setNewRun:function(){
+		console.log("SETTING A NEW RUN");
+		this.state = "NEW RUN";
+		this.markThisAndParents("input");
+		this.createAndRefresh();
+
+		$(this.dom + " .NEW-RUN").css("display","block");
+		$(this.dom + " .SAVED-RUN").css("display","none");
+		$(this.dom + " .NO-MODEL").css("display","none");
+
+		$(this.dom + " .SAVED-RUN select").prop("disabled",false);
+		var btns = $(this.dom + " .r-btn");
+		console.log(btns);
+		for(var i = 0;i < btns.length; i++){
+			$(btns[i]).removeClass("active");
+		}
+		$(this.dom + " #new-run-button").addClass("active");
+		this.checkNewModels();
+	},
+
+	setSavedRun:function(){
+		$(this.dom + " .NEW-RUN").css("display","none");
+		$(this.dom + " .SAVED-RUN").css("display","block");
+		$(this.dom + " .NO-MODEL").css("display","none");
+
+		this.skipped = false;
+		
+		this.disableInputs();
+		$(this.dom + " .SAVED-RUN select").prop("disabled",false);
+		var btns = $(this.dom + " .r-btn");
+		console.log(btns);
+		for(var i = 0;i < btns.length; i++){
+			$(btns[i]).removeClass("active");
+		}
+		$(this.dom + " #saved-run-button").addClass("active");
+		this.checkNewModels();
+
+	},
+
+	setNoRun:function(check){
+		if(check == undefined){
+			this.markThisAndParents("input");
+		}
+		
+		this.skipStep();
+		$(this.dom + " .NEW-RUN").css("display","none");
+		$(this.dom + " .SAVED-RUN").css("display","none");
+		$(this.dom + " .NO-MODEL").css("display","block");
+
+		$(this.dom + " .SAVED-RUN select").prop("disabled",false);
+		var btns = $(this.dom + " .r-btn");
+		console.log(btns);
+		for(var i = 0;i < btns.length; i++){
+			$(btns[i]).removeClass("active");
+		}
+		$(this.dom + " #no-run-button").addClass("active");
+		this.checkNewModels();
+		
+	},
+
+	checkNewModels:function(){
+		for(var i = Streams.app_control.apps_array.length - 1; i >= 0; i--){
+				console.log(Streams.app_control.apps_array[i].state);
+				if(Streams.app_control.apps_array[i].state == "NEW RUN"){
+					$("#runModels").button({disabled:false})
+					break;
+				}
+				console.log(i);
+				if(i == 0){
+					$("#runModels").button({disabled:true})
+				}
+		}
+	},
+
+
+	configureManagement:function(){
+		var appContent = $(this.dom + ' .app_content');
+		var manage_button = $("<button class='manage'>Manage</button>");
+		$(appContent).append(manage_button);
+		$(manage_button).button()
+
+		var manage_panel = $("<div class='manage_panel'></div>");
+		$(appContent).append(manage_panel);
+
 	},
 
 	configureModels:function(){
@@ -485,8 +655,16 @@ var Step = Class.extend({
 
 			that.type = that.config[0].class;
 			console.log(this);
+			
+			that.configureInputs();
+			//that.evaluateAvailableModels();
+			//if(this.state == "NO MODEL"){this.disableInputs()};
 		})
 
+	},
+	
+	configureInputs:function(){
+		console.log("CONFIG");
 	},
 
 	createAndRefresh:function(){
@@ -525,6 +703,7 @@ var Step = Class.extend({
 			if(requirements.length > 0){
 				for(var req = 0;req < requirements.length;req++){
 					webInfo.push(Streams.app_control.apps[requirements[req].step].getInfo());
+					Streams.app_control.apps[requirements[req].step].state = "SAVED RUN";
 					console.log(Streams.app_control.apps[requirements[req].step].getInfo());
 				}
 			}
@@ -532,10 +711,10 @@ var Step = Class.extend({
 			
 		
 		}
-		
+		this.state = "SAVED RUN";
 
 		webInfo.push(this_model);
-		Status.addQueue(this_model);
+		//Status.addQueue(this_model);
 
 		
 		var serverResponse = $.post('/execute-step', {
@@ -553,10 +732,17 @@ var Step = Class.extend({
 
 	buildThumbnailList:function(list){
 		var dropdown_url = list[0];
-		list.splice(0, 1);
+		list.splice(0, 1); 
+		
+		console.log("LIST");
+		console.log(list);
 		//list.reverse();
 		list.push(dropdown_url);
-		Streams.app_control.addThumbnail(list);
+		//Streams.app_control.addThumbnail(list);
+		
+		for(i = 0; i < list.length; i++){
+			Thumbnails.buildThumbnails(i+1,"COMPLETED",list[i].url)
+		}
 	},
 
 	startCheck:function(serverResponse){
@@ -617,8 +803,9 @@ var Step = Class.extend({
 	},
 
 
-	getInfo:function(){
+	getInfo:function(source){
 		console.log("Extend Running");
+		console.log(source);
 		var basic_settings = {};
 			basic_settings.basin_id = Streams.app_control.apps.basin.basin.id;
 			basic_settings.run_alias = $(this.dom + " .runModel .runInput").val();
@@ -635,13 +822,64 @@ var Step = Class.extend({
 		}
 		
 
-		
-	
-
-		this.disableInputs();
+		console.log("SOURCE");
+		console.log(source);
+		if(source != "input"){
+			this.disableInputs();
+		}
+		this.setSavedRun();
+		//this.state = "SAVED RUN";
 		return basic_settings;
 
-	}	
+	},
+
+	markThisAndParents:function(source){
+		var namelist = [];
+		console.log(source);
+		var src = source;
+		var this_model = this.getInfo(src);
+
+		var requirements;
+		if(this.config != null){
+			for(var sc = 0; sc < this.config.length; sc++){
+				if(this.config[sc].script == this_model.scriptName){
+					requirements = this.config[sc].requirements;
+				}
+			}
+
+			if(requirements.length > 0){
+				for(var req = 0;req < requirements.length;req++){
+					var obj = {
+						pos: Streams.app_control.apps[requirements[req].step].position,
+						skipped:Streams.app_control.apps[requirements[req].step].skipped,
+						state: Streams.app_control.apps[requirements[req].step].state, //step_id
+						url: Streams.user + "/" + Streams.app_control.apps[requirements[req].step].name + "/" +  Streams.app_control.apps[requirements[req].step].step_id + "/"
+					}
+					namelist.push(obj);
+				}
+			}
+	
+			
+		
+		}
+
+		
+		
+		var thisobj = {
+						pos: this.position,
+						skipped: this.skipped,
+						state: this.state, //step_id
+						url: Streams.user + "/" + this.name + "/" +  this.step_id + "/"
+					}
+
+		namelist.push(thisobj);
+
+		for(var i = 0;i< namelist.length;i++){
+			Thumbnails.buildThumbnails(namelist[i].pos, namelist[i].state,namelist[i].skipped, namelist[i].url);
+		}
+		console.log(namelist);
+
+	},
 	
 
 })

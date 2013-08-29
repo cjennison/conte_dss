@@ -1,0 +1,30 @@
+<html>
+	<head>
+		<title>Brook Trout Spatial Data Viewer</title>
+		<link rel="shortcut icon" href="Geoserver/Images/AppLCC.ico">
+		<link rel="icon" type="image/ico" href="Geoserver/Images/AppLCC.ico">
+		<link rel="stylesheet" href="Geoserver/Styles/Map_Viewer_Styles.css" type="text/css">  
+		<script src="Geoserver/OpenLayers/OpenLayers.js"></script>
+		<script defer="defer" src="Geoserver/Scripts/Map_Viewer.js"></script>
+		<script src="Geoserver/Scripts/Layer_Switcher.js"></script>
+		<script src="Geoserver/Scripts/Legend_Checker.js"></script>
+		<script src="Geoserver/Scripts/Download_Layers.js"></script>
+	</head>
+  
+	<body onload="init()" onload="checker()">
+		<div id="legend">
+			<!--<form name="switch">
+				<input type="checkbox" id="landCov" name="layer" value="landCov" onclick="layerSwitch(this, this.id);" checked="true" >Land Cover
+				<br>
+				<input type="checkbox" id="USstates" name="layer" value="USstates" onclick="layerSwitch(this, this.id);" checked >US States 
+				<br>
+				<input type="checkbox" id="rivers" name="layer" value="rivers" onclick="layerSwitch(this, this.id);" checked >Major Rivers 
+			</form>-->
+		</div>
+		<div id="panel"></div>
+		<div id="map"></div> 
+		<div id="scale-id"></div>
+		<div id="scaleline-id"></div>
+		<div id="location">Location</div>
+	</body>
+</html>

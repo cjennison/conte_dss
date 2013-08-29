@@ -352,8 +352,8 @@ Scatterplot.prototype.initSeriesToggle = function(){
 		selector = this.fixedDiv;
 	}
 	var toggle = $("<div class='toggle'><ul></ul></div>")
-	$(toggle).css("left", this.w - this.padding * 2.2)
-	$(toggle).css("top", -this.h + (this.padding))
+	//$(toggle).css("left", this.w - this.padding * 2.2)
+	//$(toggle).css("top", -this.h + (this.padding))
 	$(selector).append(toggle)
 }
 
@@ -422,8 +422,8 @@ console.log(d3.min(this.yPool, function(d){return Number(d)}))
 	$(yLabel).css('font-size', this.fontsize);
 	
 	var title = $("<div class='title'>" + that.title + "</div>")
-	$(title).css("width", this.w);
-	$(title).css("top", ((this.h  + this.padding/2) * -1))
+	//$(title).css("width", this.w);
+	//$(title).css("top", ((this.h  + this.padding/2) * -1))
 	$(title).css('font-size', this.titlesize);
 	
 	$(con).append(xLabel);

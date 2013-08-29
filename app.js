@@ -23,16 +23,6 @@ console.log(config.server);
 
 
 
-var redirect = module.exports = express();
-
-redirect.get('/', function(req,res){
-	console.log("WOAH BUDDY");
-	res.redirect('http://felek.cns.umass.edu:1337');
-});
-
-var server2 = http.createServer(redirect );
-
-server2.listen(8888);
 
 
 

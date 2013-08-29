@@ -1,11 +1,16 @@
 var barrier = Step.extend({
 	name:'barrier',
+	position:1,
 	dom:'#barriers-app',
+	state:"NO MODEL",
+	skipped:false,
 	
 	start:function(){
 		this._super();
 		var that = this;	
 		
+		Thumbnails.buildThumbnails(1,"NO RUN" , false, null);
+
 	},
 
 	getRuns:function(){
@@ -53,6 +58,8 @@ var barrier = Step.extend({
 	  		}
 
 			if(isDOM == true){
+				//this.setParents(data.stepID, data);
+				Thumbnails.buildThumbnails(this.position, this.state, this.skipped, Streams.user + "/" + this.name + "/" +  this.step_id + "/");
 				this.setDependents(dam_settings.step.stepID);
 			}
 		
@@ -135,8 +142,8 @@ var barrier = Step.extend({
 	
 
 	
-	getInfo:function(){
-		var vars = this._super();
+	getInfo:function(source){
+		var vars = this._super(source);
 		var barrier_settings = [];
 		var bar_list = $("#barriers-app #barriers-container .bar_item");
 	  	for(var i = 0;i<bar_list.length;i++){

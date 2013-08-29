@@ -2,70 +2,155 @@
 	"barrier":[
 		{
 			"script":"clip_basin_by_barrier",
-			"alias":"Clip Basin by Barrier",
+			"alias":"Clip Basin by Dam",
 			"disabled":false,
-			"class":"POINT_DATA",
+			"class":"BASIN",
 			"requirements":[]
 		}
 		
 	],
 	"climate":[
 		{
-			"script":"weather_generator",
-			"alias":"Stochastic Weather Generator",
-			"class":"TIMESERIES",
+			"script":"climate_historic",
+			"alias":"Historic Climate",
+			"class":"TIMESERIES_historic_only",
 			"disabled":false,
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-							"POINT_DATA",
+						"BASIN",
+						null
+					]
+				}
+			
+			]
+		},		{
+			"script":"climate_shifted_historic",
+			"alias":"Shifted Historic Climate",
+			"class":"TIMESERIES_historic_and_modelled",
+			"disabled":false,
+			"input":{
+				"precip_graph":{
+					"type":"input_graph",
+					"variation":"variation",
+					"html":"<p>Precipitation - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%<br>- change in mean start year:  <input class='varstartNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='varendNumber' value='0'></input>%",
+					"min":-30,
+					"max":30,
+					"xAxis":"Year",
+					"yAxis":"% Change",
+					"label":"Precipitation"
+					
+				},
+				"temp_graph":{
+					"type":"input_graph",
+					"variation":"no_variation",
+					"html":"<p>Temperature - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%",
+					"min":-2,
+					"max":8,
+					"xAxis":"Year",
+					"yAxis":"% Change",
+					"label":"Air Temperature"
+					
+				}
+
+			},
+
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"BASIN",
+						null
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"weather_generator",
+			"alias":"Stochastic Weather Generator",
+			"class":"TIMESERIES_historic_and_modelled",
+			"disabled":false,
+			"input":{
+				"precip_graph":{
+					"type":"input_graph",
+					"variation":"variation",
+					"html":"<p>Precipitation - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%<br>- change in mean start year:  <input class='varstartNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='varendNumber' value='0'></input>%",
+					"min":-30,
+					"max":30,
+					"xAxis":"Year",
+					"yAxis":"% Change",
+					"label":"Precipitation"
+					
+				},
+				"temp_graph":{
+					"type":"input_graph",
+					"variation":"no_variation",
+					"html":"<p>Temperature - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%",
+					"min":-2,
+					"max":8,
+					"xAxis":"Year",
+					"yAxis":"% Change",
+					"label":"Air Temperature"
+					
+				}
+
+			},
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+							"BASIN",
 							null
 					]
 				}
 			
 			]
 		},
-		{
-			"script":"baseline_shift",
-			"alias":"Baseline Shifted Climate",
-			"class":"OTHER_DATA",
-			"disabled":false,
-			"requirements":[
-				{
-					"step":"barrier",
-					"script":[
-							"POINT_DATA"
-					]
-				}
-			
-			]
-		},
-		{
-			"script":"baseline_historic",
-			"alias":"Historic Climate",
-			"class":"TIMESERIES",
-			"disabled":false,
-			"requirements":[
-				{
-					"step":"barrier",
-					"script":[
-							"POINT_DATA"
-					]
-				}
-			
-			]
-		},
+
+
 		{
 			"script":"gcm_downscaled",
-			"alias":"GCM Downscaled Time Series",
-			"class":"TIMESERIES",
+			"alias":"GCM Downscaled Projection",
+			"class":"TIMESERIES_historic_and_modelled",
 			"disabled":false,
+			"input":{
+				"scenario":{
+					"type":"dropdown",
+					"label":"Emissions Scenario (RCP)",
+					"options":[
+						"2.6",
+						"4.5",
+						"6.0",
+						"8.5"
+					]
+				},
+				"projection":{
+					"type":"dropdown",
+					"label":"CMIP5 Model",
+					"options":[
+						"bcc (csm1-1)", 
+						"ccsm4 (1)", 
+						"ccsm4 (2)", 
+						"gfdl (esm2g)", 
+						"gfdl (esm2m)", 
+						"ipsl (cm5a-lr)", 
+						"ipsl (cm5a-mr)", 
+						"miroc (esm)", 
+						"miroc (esm-chem)", 
+						"miroc5", 
+						"mri (cgcm3)", 
+						"noresm1 (m)"
+					]
+				}
+			},
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-							"POINT_DATA"
+						"BASIN",
+						null
 					]
 				}
 			
@@ -73,14 +158,15 @@
 		},
 		{
 			"script":"temp_extreme",
-			"alias":"Temperature Extreme",
-			"class":"TIMESERIES",
-			"disabled":false,
+			"alias":"Extreme Temperature Simulation",
+			"class":"TIMESERIES_modelled_only",
+			"disabled":true,
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-							"POINT_DATA"
+						"BASIN",
+						null
 					]
 				}
 			
@@ -88,14 +174,15 @@
 		},
 		{
 			"script":"drought_extreme",
-			"alias":"Drought Extreme",
-			"class":"TIMESERIES",
-			"disabled":false,
+			"alias":"Drought Simulation",
+			"class":"TIMESERIES_modelled_only",
+			"disabled":true,
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-							"POINT_DATA"
+						"BASIN",
+						null
 					]
 				}
 			
@@ -108,21 +195,21 @@
 	"land":[
 		{
 			"script":"nlcd_query",
-			"alias":"NLCD Land Query",
-			"class":"SPACIAL_DATA",
+			"alias":"Current Land Cover (NLCD)",
+			"class":"ZONAL_STATS",
 			"description":null, 
 			"disabled":false,
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-						"POINT_DATA"
+						"BASIN",
+						null
 					]
 				},
 				{
 					"step":"climate",
 					"script":[
-						"TIMESERIES",
 						null
 					]
 				}
@@ -131,20 +218,29 @@
 		
 		{
 			"script":"change_percent_forest",
-			"alias":"Change % Forest",
-			"class":"RASTER_DATA",
+			"alias":"Manage Forest Cover",
+			"class":"ZONAL_STATS",
 			"disabled":false,
+			"input":{
+				"pctForest":{
+					"type":"SliderBar",
+					"label":"Percent change in forest cover",
+					"min":-50,
+					"max":50,
+					"init":0
+				}
+			},
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-						"POINT_DATA"
+						"BASIN",
+						null
 					]
 				},
 				{
 					"step":"climate",
 					"script":[
-						"TIMESERIES",
 						null
 					]
 				}
@@ -152,21 +248,32 @@
 		},
 		{
 			"script":"lcad_query",
-			"alias":"LCAD Land Query",
-			"class":"SPACIAL_DATA",
+			"alias":"Designing Sust. Landscapes Projection",
+			"class":"ZONAL_STATS",
 			"disabled":true,
+			"input":{
+				"scenario":{
+					"type":"dropdown",
+					"label":"Development Scenario",
+					"options":[
+						"Low",
+						"Medium",
+						"High"
+					]
+				}
+			},
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-						"POINT_DATA"
+						"BASIN",
+						null
 					]
 				},
 				{
 					"step":"climate",
 					"script":[
-						"TIMESERIES",
-						null
+						null					
 					]
 				}
 			]
@@ -175,27 +282,67 @@
 	"flow":[
 		{
 			"script":"abcde",
-			"alias":"ABCDE Regional",
-			"class":"SPATIAL_DATA",
+			"alias":"abcde for Gaged Basins",
+			"class":"TIMESERIES_preceeding_class",
 			"disabled":false,
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-						"POINT_DATA"
+						"BASIN",
+						null
 					]
 				},
 				{
 					"step":"climate",
 					"script":[
-						"TIMESERIES"
+						"TIMESERIES_historic_and_modelled",
+						"TIMESERIES_historic_only",
+						"TIMESERIES_modelled_only"
 					]
 				},
 				{
 					"step":"land",
 					"script":[
-						"SPACIAL_DATA",
-						"RASTER_DATA",
+						null
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"abcde_reduced",
+			"alias":"abcde with Water Withdrawal",
+			"class":"TIMESERIES_preceeding_class",
+			"disabled":true,
+			"input":{
+				"pctReduced":{
+					"type":"SliderBar",
+					"label":"Percent reduction in stream flow",
+					"min":0,
+					"max":50,
+					"init":0
+				}
+			},
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"BASIN",
+						null
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES_historic_and_modelled",
+						"TIMESERIES_historic_only",
+						"TIMESERIES_modelled_only"
+					]
+				},
+				{
+					"step":"land",
+					"script":[
 						null
 					]
 				}
@@ -206,34 +353,70 @@
 	"streamtemp":[
 		{
 			"script":"mohseni",
-			"alias":"Non-Linear Regression",
-			"class":"OTHER_DATA",
+			"alias":"Mohseni for Gaged Basins",
+			"class":"TIMESERIES_preceeding_class",
 			"disabled":false,
 			"requirements":[
 				{
 					"step":"barrier",
 					"script":[
-						"POINT_DATA"
+						"BASIN",
+						null
 					]
 				},
 				{
 					"step":"climate",
 					"script":[
-						"TIMESERIES"
+						"TIMESERIES_historic_and_modelled",
+						"TIMESERIES_historic_only",
+						"TIMESERIES_modelled_only"
 					]
 				},
 				{
 					"step":"land",
 					"script":[
-						"SPACIAL_DATA",
-						"RASTER_DATA",
 						null
 					]
 				},
 				{
 					"step":"flow",
 					"script":[
-						"SPATIAL_DATA", 
+						null
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"breakpoint",
+			"alias":"Air-Water Temperature Synchronization",
+			"class":"TIMESERIES_preceeding_class",
+			"disabled":true,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"BASIN",
+						null
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						"TIMESERIES_historic_and_modelled",
+						"TIMESERIES_historic_only",
+						"TIMESERIES_modelled_only"
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
 						null
 					]
 				}
@@ -243,44 +426,6 @@
 	],
 	"population":[
 		{
-			"script":"salmon_IPM",
-			"alias":"Salmon Pop. Growth Model",
-			"disabled":false,
-			"requirements":[
-				{
-					"step":"barrier",
-					"script":[
-						"POINT_DATA"
-					]
-				},
-				{
-					"step":"climate",
-					"script":[
-						"TIMESERIES"
-					]
-				},
-				{
-					"step":"land",
-					"script":[
-						"SPACIAL_DATA",
-						"RASTER_DATA",
-						null
-					]
-				},
-				{
-					"step":"flow",
-					"script":[
-						"SPATIAL_DATA"
-					]
-				},
-				{
-					"step":"streamtemp",
-					"script":["OTHER_DATA"]
-				}
-			
-			]
-		},
-		{
 			"script":"trout_occupancy_CT",
 			"alias":"CT Brook Trout Occupancy",
 			"disabled":false,
@@ -288,33 +433,33 @@
 				{
 					"step":"barrier",
 					"script":[
-						"POINT_DATA"
+						"BASIN",
+						null
 					]
 				},
 				{
 					"step":"climate",
 					"script":[
-						"TIMESERIES"
+						"TIMESERIES_historic_and_modelled",
+						"TIMESERIES_historic_only",
+						"TIMESERIES_modelled_only"
 					]
 				},
 				{
 					"step":"land",
 					"script":[
-						"SPACIAL_DATA",
-						"RASTER_DATA"
+						"ZONAL_STATS"
 					]
 				},
 				{
 					"step":"flow",
 					"script":[
-						"SPATIAL_DATA", 
 						null
 					]
 				},
 				{
 					"step":"streamtemp",
 					"script":[
-						"OTHER_DATA",
 						null
 					]
 				}
@@ -322,40 +467,163 @@
 			]
 		},
 		{
-			"script":"plot_IPM",
-			"alias":"Trout Pop. Growth Sensitivity",
+			"script":"trout_IPM_sensitivity",
+			"alias":"Trout Population Growth Sensitivity",
 			"disabled":false,
-			"requirements":[
+			"requirements":[ 
+			
 				{
 					"step":"barrier",
 					"script":[
-						"POINT_DATA"
+						null
 					]
 				},
 				{
 					"step":"climate",
 					"script":[
-						"TIMESERIES"
+						null
 					]
 				},
 				{
 					"step":"land",
 					"script":[
-						"SPACIAL_DATA",
-						"RASTER_DATA",
 						null
 					]
 				},
 				{
 					"step":"flow",
 					"script":[
-						"SPATIAL_DATA"
+						"TIMESERIES_preceeding_class"
 					]
 				},
 				{
 					"step":"streamtemp",
 					"script":[
-						"OTHER_DATA"
+						"TIMESERIES_preceeding_class"
+					]
+				}
+			
+			]
+		},
+		
+		{
+			"script":"salmon_IPM_sensitivity",
+			"alias":"Salmon Population Growth Sensitivity",
+			"disabled":false,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
+						"TIMESERIES_preceeding_class"
+					]
+				},
+				{
+					"step":"streamtemp",
+					"script":[
+						"TIMESERIES_preceeding_class"
+					]
+				}
+			
+			]
+		},		
+		{
+			"script":"salmon_IPM",
+			"alias":"Salmon Population Growth Model",
+			"disabled":true,
+			"input":{
+				"stocking_stage":{
+					"type":"SliderBar",
+					"min":0,
+					"max":100,
+					"init":50
+				}
+			},
+
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
+						"TIMESERIES_preceeding_class"
+					]
+				},
+				{
+					"step":"streamtemp",
+					"script":[
+						"TIMESERIES_preceeding_class"
+					]
+				}
+			
+			]
+		},
+		{
+			"script":"wb_trout_IPM",
+			"alias":"Brook Trout Population Growth Model",
+			"disabled":true,
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"climate",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"land",
+					"script":[
+						null
+					]
+				},
+				{
+					"step":"flow",
+					"script":[
+						"TIMESERIES_preceeding_class"
+					]
+				},
+				{
+					"step":"streamtemp",
+					"script":[
+						"TIMESERIES_preceeding_class"
 					]
 				}
 			

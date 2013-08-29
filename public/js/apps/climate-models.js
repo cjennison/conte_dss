@@ -1,7 +1,10 @@
 var climate = Step.extend({
 	name:'climate', 
 	dom:'#weather-models-app',
+	position:2,
 	preceded:['barrier'],
+	skipped:false,
+	state:"NO MODEL",
 	
 	start:function(){
 		this._super();
@@ -22,16 +25,22 @@ var climate = Step.extend({
    		 meanTempChangeVal.text(0);
 	
 		//Input Graphs
-		inputGraph.initGraph("WeatherModel_Precipitation", "#graphcontainer1", "graphcontainer1", "variation", "<p>Precipitation - change in mean: in 2013: <input class='startNumber' value='0'></input>% in <span class='enddate'>2093</span>: <input class='endNumber' value='0'>%<br>- change in variance: in 2013: <input class='varstartNumber' value='0'></input>% in <span class='enddate'>2093</span>: <input class='varendNumber' value='0'></input>%", -30, 30, "Years", "Mean");
-		inputGraph.initGraph("WeatherModel_Temperature" , "#graphcontainer2", "graphcontainer2", "no_variation", "<p>Temperature - change in mean: in 2013: <input class='startNumber' value='0'></input>% in <span class='enddate'>2093</span>: <input class='endNumber' value='0'>%", -10, 10, "Years", "Mean");
-	
-		inputGraph.initGraph("Baseline_Precipitation", "#baselineHistoric_graphcontainer1", "baselineHistoric_graphcontainer1", "variation", "<p>Precipitation - change in mean: in 2013: <input class='startNumber' value='0'></input>% in <span class='enddate'>2093</span>: <input class='endNumber' value='0'>%<br>- change in variance: in 2013: <input class='varstartNumber' value='0'></input>% in <span class='enddate'>2093</span>: <input class='varendNumber' value='0'></input>%", -30, 30, "Years", "Mean");
-		inputGraph.initGraph("Baseline_Temperature" , "#baselineHistoric_graphcontainer2", "baselineHistoric_graphcontainer2", "no_variation", "<p>Temperature - change in mean: in 2013: <input class='startNumber' value='0'></input>% in <span class='enddate'>2093</span>: <input class='endNumber' value='0'>%", -10, 10, "Years", "Mean");
 	
 		
+		//this.setNewRun();
 		
 
 	},
+
+	configureInputs:function(){
+		inputGraph.initGraph("WeatherModel_Precipitation", "#graphcontainer1", "graphcontainer1", this.config[1].input["precip_graph"].variation, this.config[1].input["precip_graph"].html, this.config[1].input["precip_graph"].min, this.config[1].input["precip_graph"].max, this.config[1].input["precip_graph"].xAxis, this.config[1].input["precip_graph"].yAxis);
+		inputGraph.initGraph("WeatherModel_Temperature" , "#graphcontainer2", "graphcontainer2", this.config[1].input["temp_graph"].variation, this.config[1].input["temp_graph"].html, this.config[1].input["temp_graph"].min, this.config[1].input["temp_graph"].max, this.config[1].input["temp_graph"].xAxis, this.config[1].input["temp_graph"].yAxis);
+
+		inputGraph.initGraph("Baseline_Precipitation", "#baselineHistoric_graphcontainer1", "baselineHistoric_graphcontainer1", this.config[2].input["precip_graph"].variation, this.config[2].input["precip_graph"].html, this.config[2].input["precip_graph"].min, this.config[2].input["precip_graph"].max, this.config[2].input["precip_graph"].xAxis, this.config[2].input["precip_graph"].yAxis);
+		inputGraph.initGraph("Baseline_Temperature" , "#baselineHistoric_graphcontainer2", "baselineHistoric_graphcontainer2", this.config[2].input["temp_graph"].variation, this.config[2].input["temp_graph"].html, this.config[2].input["temp_graph"].min, this.config[2].input["temp_graph"].max, this.config[2].input["temp_graph"].xAxis, this.config[2].input["temp_graph"].yAxis);
+	
+	},
+
 
 	
 	populateInput: function(options, isDOM){
@@ -99,8 +108,8 @@ var climate = Step.extend({
 	},
 	
 
-	getInfo:function(){
-		var vars = this._super();
+	getInfo:function(source){
+		var vars = this._super(source);
 
 		var curGraph = 0;
 		var model = $('div#weather-models-app.application .styledSelect select');
@@ -112,7 +121,11 @@ var climate = Step.extend({
   		} else if(scriptName == "baseline_shift"){
   			curGraph = 2;
   		}
-  	
+  		
+		var scenario = $('div#weather-models-app.application div.app_content #emissions_scenario.styledSelect_ select option:selected').val();
+		var projection = $('div#weather-models-app.application div.app_content #proj_drop.styledSelect_ select option:selected').val();
+		
+console.log(scenario );
   	
   		console.log(scriptName);
   		var precip_mean_y1 = graphObject[curGraph].startMeanVal;
@@ -140,6 +153,8 @@ var climate = Step.extend({
 			scriptName:vars.scriptName,
 			basin_id:vars.basin_id,
 			existing_step_id:vars.stepID,
+			scenario:scenario,
+			projection:projection,
 			precip_mean_y1:precip_mean_y1,
   					precip_mean_yn:precip_mean_yn,
   					precip_var_y1:precip_var_y1,

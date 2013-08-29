@@ -120,11 +120,7 @@ function sortHistory(sortItem){
 function populateRunList(run_list, ul){
 	var d = run_list;
 	var hist_item = $("<li class='history-item'></li>");
-	var hist_ul = $("<ul></ul>");
-	
-	console.log('+++++++++++++++++++++++++++')
-	console.log(d)
-	
+	var hist_ul = $("<ul></ul>")
 	//alias
 	var alias = $("<li><div class='history-box'>" + d.alias + "</div></li>");
 	$(hist_ul).append(alias);

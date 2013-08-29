@@ -2,7 +2,7 @@
  */
 var Streams = {};
 Streams.user = null;
-
+Streams.stepList = [];
 var Tools = {};
 
 // Connect to the server using SocketIO:
@@ -34,6 +34,8 @@ console.log(Streams.user);
   Streams.map.init();
   Streams.app_control.init();
 
+
+
   Streams.map.render();
   Streams.app_control.render();
   
@@ -50,6 +52,9 @@ console.log(Streams.user);
   //TODO move and make non-set value
   Graphing.init(9);
 
+  
+
+
 setInterval(function(){
 	$("html, body").animate({ scrollTop: 0 }, "slow");
 },100);
@@ -64,12 +69,17 @@ setInterval(function(){
 });
 
 function initNavigation(){
-	$("#navBar #historyButton").button({disabled:false});
-	$("#navBar #inputButton").button({disabled:false});
-	$("#navBar #outputButton").button({disabled:false});
-	$("#navBar #graphButton").button({disabled:false});
+	$("#navigationBar #historyButton").button({disabled:false});
+	$("#navigationBar #inputButton").button({disabled:false});
+	$("#navigationBar #outputButton").button({disabled:false});
+	$("#navigationBar #graphButton").button({disabled:false});
+	$("#navigationBar #logoutButton").button({disabled:false});
+	$("#navigationBar #dashboardButton").button({disabled:false});
+
 	
-	$("#navBar #inputButton").bind("click", function(){
+
+
+	$("#navigationBar #inputButton").bind("click", function(){
 		removeOutput();
 		$("#inputWrapper").css("top","0%");
 		$("#outputWrapper").css("top","100%");
@@ -78,7 +88,7 @@ function initNavigation(){
 
 	});
 	
-	$("#navBar #outputButton").bind("click", function(){
+	$("#navigationBar #outputButton").bind("click", function(){
 		initOutput();
 		$("#inputWrapper").css("top","-100%");
 		$("#outputWrapper").css("top","0%");
@@ -88,7 +98,7 @@ function initNavigation(){
 		$(".panelBackground").css("opacity", .9);
 	});
 	
-	$("#navBar #historyButton").bind("click", function(){
+	$("#navigationBar #historyButton").bind("click", function(){
 		initOutput();
 		$("#inputWrapper").css("top","-100%");
 		$("#outputWrapper").css("top","0%");
@@ -98,7 +108,7 @@ function initNavigation(){
 	});
 	
 	
-	$("#navBar #graphButton").bind("click", function(){
+	$("#navigationBar #graphButton").bind("click", function(){
 		removeOutput();
 		initGraph();
 		$("#inputWrapper").css("top","-200%");

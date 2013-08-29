@@ -97,12 +97,32 @@ a.ui-slider-handle.ui-state-default.ui-corner-all{
 	height: 34px;
 }
 
+.styledSelect_ select{
+	background: transparent;
+	width: 314px;
+	padding: 5px;
+	font-size: 16px;
+	line-height: 1;
+	border: 0;
+	border-radius: 0;
+	height: 34px;
+}
+
+#weather-models-app p{
+	margin-top: 1px;
+}
+
+#acc3 .content .app-content{
+	margin-top: 18px;
+}
+
 .styledSelect{
 	width: 281px;
 	position: relative;
 	top: -20px;
 	margin-top: 20px;
-	margin-left: 16px;
+	margin-left: auto;
+	margin-right: auto;
 	height: 34px;
 	overflow: hidden;
 	border: 1px solid #D67205;
@@ -110,7 +130,36 @@ a.ui-slider-handle.ui-state-default.ui-corner-all{
 	font-weight:400;
 }
 
+.styledSelect_{
+	width: 281px;
+	position: relative;
+	top: -20px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 34px;
+	overflow: hidden;
+	border: 1px solid #D67205;
+	color:black;
+	font-weight:400;
+}
+
+#modelDropdown{
+	}
+
 .styledSelect .selectImage{
+	
+	background: url(../images/dropdown_arrow.png);
+	position: absolute;
+	width: 20px;
+	height: 16px;
+	margin-top: -26px;
+	margin-left: 245px;
+	background-size: 100% 100%;
+	pointer-events:none;
+}
+
+.styledSelect_ .selectImage{
 	
 	background: url(../images/dropdown_arrow.png);
 	position: absolute;
@@ -173,21 +222,24 @@ a.ui-slider-handle.ui-state-default.ui-corner-all{
 }
 
 .runTypeSelect{
-	width: 205px;
-position: relative;
-top: -20px;
-margin-left: 143px;
-height: 34px;
-overflow: hidden;
-border: 1px solid #D67205;
+	width: 281px;
+	position: relative;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 34px;
+	overflow: hidden;
+	border: 1px solid #D67205;
+	color:black;
+	font-weight:400;
 }
 
 a.createnew.ui-button.ui-widget.ui-state-default.ui-corner-all.ui-button-text-only{
 	position: relative;
-overflow: hidden;
-padding: 0;
-top: 15px;
-margin-left: -267px;
+	overflow: hidden;
+	padding: 0;
+	top: 15px;
+	margin-left: -560px;
 }
 
 .runTypeSelect .selectImage{
@@ -196,7 +248,7 @@ position: absolute;
 width: 15px;
 height: 13px;
 margin-top: -23px;
-margin-left: 187px;
+margin-left: 245px;
 background-size: 100% 100%;
 }
 
@@ -205,19 +257,35 @@ background-size: 100% 100%;
 	position: relative;
 }
 
+#baseline_shift p{
+	top: -123px;
+	position: relative;
+}
+
+#climate_shifted_historic p{
+	top: -123px;
+	position: relative;
+}
+
 /*  INPUT  */
 .runModel{
-	position: relative;
-	width: 100%;
+	width: 282px;
+	top: -20px;
+	margin-top: 10px;
+	margin-left: auto;
+	margin-right: auto;
+	height: 34px;
+	overflow: hidden;
+	border: 1px solid rgb(214, 114, 5);
+	color: black;
+	font-weight: 400;
+	display: block;
 }
 
 .runModel input{
 	width: 300px;
-	height: 24px;
-	border: 1px solid #D67205;
-	font-size: 14px;
-	font-weight: 500;
-	margin-bottom:10px;
+	height: 34px;
+	border: 0px solid #D67205;
 }
 
 
@@ -292,6 +360,7 @@ background-size: 100% 100%;
 	position:absolute;
 	width:70px;
 	height:70px;
+	z-index: 1;
 }
 .dropdownList .buttonContainer{
 	width: 100px;

@@ -1,10 +1,19 @@
 var population = Step.extend({
 	name:'population',
 	dom:'#fish-models-app',
+	position:6,
 	preceded:['barrier','climate','land','flow','streamtemp'],
 
 	start:function(){
 		this._super();
+		
+		
+
+
+		
+	},
+
+	configureInputs:function(){
 		var view = $(this.dom);
 		var stockingslider1 = view.find('.stockingslider1');
     		var stockingNumber = view.find('.stockingNumber');
@@ -12,19 +21,16 @@ var population = Step.extend({
    		 var countNumber = view.find('.countNumber');
 
 		countslider1.slider({
-      		max    : 100,
-	        min     : 0,
-	        range   : 'min',
-	        value   : 50,
-	        animate : 'fast',
-     		 disabled:false,
-     		 slide   : function (event, ui) {
-     		 	countNumber.text(ui.value);
-     		 }
-    });
-
-
-		
+      		   max    : this.config[3].input["stocking_stage"].max,
+	     	   min     : this.config[3].input["stocking_stage"].min,
+	     	   range   : 'min',
+	     	   value   : this.config[3].input["stocking_stage"].init,
+	     	   animate : 'fast',
+     		   disabled:false,
+     			 slide   : function (event, ui) {
+     			 	countNumber.text(ui.value);
+     			 }
+  		  });
 	},
 
 	populateInput:function(options, isDOM){
@@ -87,8 +93,8 @@ var population = Step.extend({
 
 	},
 
-	getInfo:function(){
-		var vars = this._super();
+	getInfo:function(source){
+		var vars = this._super(source);
 		var stocking_stage = $("#" + vars.scriptName + " select.selectStockingStage" ).val();
 		var stocking_count = $("#" + vars.scriptName + " .countNumber" ).html();	//Get Basin ID and ALIAS
   	

@@ -116,7 +116,8 @@ Streams.app_control.apps.basin = {
     var loader        = $('<div id="loader">');
     var message       = $('<div id="msg">');
     var prompt_header = $('<div id="prompt_header">');
-    var prompt        = $('<div id="prompt">');
+    var static        = $('<div id="basin_header">');
+    var prompt        = $('<div id="prompt" style="margin-top: 70px;">');
     var information   = $('<div id="info">')
     var sim_period	  = $('<div id="sim">');
     var basinList	  = $('<ul id="basinList">');
@@ -125,12 +126,14 @@ Streams.app_control.apps.basin = {
     var basinListObject;
     
     var save_message  = $('<div id="save_message">');
+	$("#basinList").css("height", "333px");
 
    
     
     
   	//Append Items to Basin View
     basin_view
+	.append(static)
       .append(loader.append(message))
       .append(prompt_header)
       .append(prompt)
@@ -157,10 +160,46 @@ Streams.app_control.apps.basin = {
 	loadPredefinedBasins();
    
    function startBasinDialog(presetValue){
-	   	prompt_header.html('<center><h1>Basin Selection</h1>' + 
-	    	' <p><h2>Select:</h2><br><p style="margin-left:15px"> ' + 
-	    	' <b style="font-size:16px">Define New Basin:</b> Right click to define a new basin <br><a id="pred" href="#" style="width:90%">Predefined Basins</a><br><a id="savedgg" href="#" style="width:90%">Saved Basins</a></p></center> </div> </p>'
-	    	);
+		static.html('<center><h2 style="color:#1C94C4">Basin</h2><br>' );
+	   	prompt_header.html('  <div class="toolbar" style="margin-left: 12px;"><div class="r-btn basin active" id="new-run-button">Predefined Basins</div >' +
+                     '<div class="r-btn basin" id="saved-run-button">My Saved Basins</div >' +
+                     '<div class="r-btn basin " id="no-run-button">New Basin</div >' +
+                  '</div>' );
+
+		$(prompt_header).find("#new-run-button").click(function(e){
+			basin_view.append(basinList)
+	     				loadPredefinedBasins();
+			var btns = $("#basin-app .r-btn");
+			for(var i = 0;i < btns.length; i++){
+				$(btns[i]).removeClass("active");
+			}
+			$("#basin-app #new-run-button").addClass("active");
+
+		})
+		$(prompt_header).find("#saved-run-button").click(function(e){
+			basin_view.append(basinList)
+	     				loadSavedBasins();
+			var btns = $("#basin-app .r-btn");
+			for(var i = 0;i < btns.length; i++){
+				$(btns[i]).removeClass("active");
+			}
+			$("#basin-app #saved-run-button").addClass("active");
+
+
+		})
+		$(prompt_header).find("#no-run-button").click(function(e){
+			console.log("NEW");
+			startDelineateDialog();
+			var btns = $("#basin-app .r-btn");
+			for(var i = 0;i < btns.length; i++){
+				$(btns[i]).removeClass("active");
+			}
+			$("#basin-app #no-run-button").addClass("active");
+
+		})
+
+
+		$("#basinList").css("height", "333px");
 	    basinList.append('<br><center><img style="margin-right:40px" src="images/ajax-loader.gif"/>');
 	
 	    	$(information).empty();
@@ -170,6 +209,7 @@ Streams.app_control.apps.basin = {
 	     
 	     var pred = $(prompt_header).find("#pred");
 	     var saved = $(prompt_header).find("#savedgg");
+	    // var delin = $(prompt_header).find("
 	     
 	    $(pred).button();
 	     $(saved).button();
@@ -187,6 +227,8 @@ Streams.app_control.apps.basin = {
 	     var basinSelect = $(prompt_header).find("#basinSelectDropdown");
 	     var basinLoader;
 	     $(basinList).css("display", "block");
+		$(basinList).css("height", "333px");
+
 	     basinListObject = basinSelect;
        		basinList.empty();
        		
@@ -231,6 +273,8 @@ Streams.app_control.apps.basin = {
    //Starts Loading JSON Object from server
 	function loadPredefinedBasins(){
 		var json = $.get('/basin/predef');
+		$(prompt).empty();
+		prompt.html("<center><h3>Select a Predefined Basin.</h3></center>");
 		basinList.fadeIn();	
 		console.log("CHECKING PRED BASINS------------------------------");
 		setTimeout(function(){console.log(json)},4000);
@@ -240,10 +284,18 @@ Streams.app_control.apps.basin = {
 	//Starts Loading JSON Object from server
 	function loadSavedBasins(){
 		var json = $.get('/basin/user/list');
+		$(prompt).empty();
+		prompt.html("<center><h3>Select a Basin from My Saved Bains.</h3></center>");
+
 		basinList.fadeIn();	
 		console.log("CHECKING SAVED BASINS------------------------------");
 		setTimeout(function(){console.log(json)},4000);
 		checkCompletedLoad(json);
+	}
+
+	function startDelineateDialog(){
+		basin_view.find(basinList).remove();
+		prompt.html("<center><h2 style='margin-top:10px'>Delineate New Basin</h2><p>Right click on the map to define basin upstream of selected point.</p>");
 	}
 
 	function checkMe(){
@@ -372,6 +424,7 @@ Streams.app_control.apps.basin = {
  * @param {Object} area
 	 */
 	function changeView(basin){
+		console.log("CHANGING THE VIEW");
 		Streams.map.hide();
 		//Streams.app_control.initSteps();
 		Streams.app_control.enableSteps(basin.name ? basin.name : basin.id);
@@ -390,18 +443,19 @@ Streams.app_control.apps.basin = {
 		
 		
 		
-		prompt_header.html('<br><h2><center>Basin: ' + 
-                       (basin.name ? basin.name : basin.id) +
-                       '</h2>');
-		prompt.html('<center><button id="newBasin">Select New Basin</button>');
+		prompt_header.html('<br><h2 style="margin:0"><center>Basin</h2>');
+		prompt.html('<center><div class="r-btn" id="newBasin">Select New Basin</div>');
 		
 		//Chart.addThumbnail(basin.thumbnail);
 		console.log(basin.thumbnail);
 		
-		$('#inputWrapper').append('<ul id="thumbnailList"><li><div class="svgDisplay" style="background:url(' + basin.thumbnail + '); background-size:100% 100%" id="basinSvg"></div></li></ul>');
+		$('#inputWrapper').append('<ul id="thumbnailList"></ul>');
 		
+		Thumbnails.buildThumbUl(); 
+		//Thumbnails.buildThumbnails(1,"NEW RUN" , false, null);
+		//Thumbnails.buildThumbnails(2,"NEW RUN" , false, null);
 		$(".panelBackground").css("opacity", "0");
-		$("#basinTitle").html = "Basin: " +  (basin.name ? basin.name : basin.id)
+		$("#basinTitle").html = "Basin";
 		sim_period.html('<br><br><br><p><center><h2>Simulation Period:</h2><p><b><span class="years">30</span> Years<br><div id="years_slider"></div>')
 		var simText = $(sim_period).find(".years");
 		var simSlider = $(sim_period).find("#years_slider");
@@ -419,7 +473,8 @@ Streams.app_control.apps.basin = {
 	        }
 	      }
 		)
-	
+		$("#saved_basin").addClass("active");
+
 		//Streams.app_control.addClass(".basinSelection-control", "full-height");
 		
 		$(prompt).find("#newBasin").bind("mousedown", function(){
@@ -436,8 +491,10 @@ Streams.app_control.apps.basin = {
 		});
 		
 		var basinButton = $("#prompt #newBasin");
-		
-		$(basinButton).button();
+		//$(basinButton).addClass("r-btn");
+		//$(basinButton).addClass("");
+
+		//$(basinButton).button();
 		$(basinButton).bind("click", function(){
 			$(prompt).empty();
 			$(prompt_header).empty();
@@ -577,7 +634,7 @@ Streams.app_control.apps.basin = {
 		
 		$(message).empty();
 		
-        message.append('<center><h2 style="margin-top:200px;">Delineating Basin from Selection Point: </h2><h3> Latitude: ' + lat + ', <br>Longitude: ' + lng + "</h2>");
+        message.append('<center><h2 style="margin-top:100px;">Delineating Basin from Selection Point: </h2><h3> Latitude: ' + lat + ', <br>Longitude: ' + lng + "</h2>");
         message.append('<br><center><img style="margin-right:140px" src="images/ajax-loader.gif"/>');
         console.log("Looking for Position");
         $(basinList).css("display", "none");
@@ -632,13 +689,13 @@ Streams.app_control.apps.basin = {
       	disableHandlers = false;
       
         var p1 = $('<center><p><h1>Use this point?</h1></p>' +
-                   '<p>Enter a Unique Name for your basin and press Save.</p>'
+                   '<p>Enter basin name for My Saved Basins list.</p>'
                    );
                    
         //Save Basin Prompt           
         var sv = $('<br><center><h2>Basin Reference Name</h2>' + '<br />' + 
         		'<input type="text" id="refName" class="runInput" value=" Enter Name" onclick="this.value=\'\'"></input>' + '<br>' +
-        		'<button id="savebtn" href="">Save Basin</button><button id="cancelbtn" href="">Cancel</button>');
+        		'<button id="savebtn" href="">Continue with this Basin</button><button id="cancelbtn" href="">Go Back</button>');
         		
         
         

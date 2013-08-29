@@ -6,18 +6,17 @@
 <link rel="stylesheet" href="../css/streams.css" >
 <link rel="stylesheet" href="../css/style.css" >
 <style type="text/css">
-	div#landingBackground {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background:url(../images/landing-bkgd-trans.gif);
-		background-size: 100% 100%;
-		left: 0;
-		top: 0;
-		opacity:.5
-	}
+	body{
+		background:url(/images/splashscreen_complete.jpg)  no-repeat center center fixed;
+		-webkit-background-size: cover;
+			-moz-background-size: cover;
+			-o-background-size: cover;
+			background-size: cover;	
+}
 	div#content {
-		top: 200px;
+		font-size:30px;
+		top: 300px;
+		color:white;
 		margin-right: 700px;
 		margin-left: 100px;
 		height: 200px;
@@ -163,30 +162,28 @@ function checkBrowser(){
 
   </head>
   <body onload="checkBrowser();">
-	<div id="landingBackground">
-	</div>
-
+	
 	<div id="content">
-		<h1 style="color:#006633">NALCC Aquatic Systems Modelling</h1>
-		<h4>Forecasting Changes in Aquatic Systems and<br> Resilience of Aquatic Populations in the NALCC: <br>Decision-support Tools for Conservation</h4>
+	<p>Select test user to enter web application. </p>
+    	  <div id="login">
+       	 <form name="login-form" action="/login-user" method="post">
+          	<select name="username" style="width: 200px;">
+          	  <option value="testuser1">Test User 1</option>
+          	  <option value="testuser2">Test User 2</option>
+          	  <option value="testuser3">Test User 3</option>
+        	  </select> <br>
+        	  <input id="time" name="time" value="" style="display:none"></span>
+       	   <input class='r-btn' name="login-button" type="submit" value="Enter" style="font-size: 20px;">
+        	</form>
+    	  </div>
 		
-		 <p><a href="/login" class="continue">Continue to the web application</a>.</p>
-		 <div id="alert"></div>
+		 <div id="alert"></div><br>
+		<a href="http://felek.cns.umass.edu:8080/geoserver/www/Web_Map_Viewer.html" style="color:white">Web Map Viewer</a>
 	</div>
-	  <div id="pic" style="position:absolute; right:100px; top:100px; margin-right:100px; margin-top:0px; vertical-align:top">
-		  <img src="../images/west-brook-snapshot.jpg" style="width: 500px; vertical-align: top; box-shadow: 10px 10px 10px grey;">
-	  </div>	
+	  	
 
-<div id="logos" style="left:10px; bottom:10px; margin-bottom:100px; margin-left:10px">
 
-	<ul>
-	  <li vertical-align: middle><p style="width:100px"><b>North Atlantic Landscape Conservation Cooperative</b></p></li>
-	  <li vertical-align: middle><img src="../images/FWS.gif" /></li>
-	  <li vertical-align: middle><img src="../images/logo_usgs.png" /></li>
-	  <li vertical-align: middle><img src="../images/umass_logo.png" /></li>
-	  <li vertical-align: middle><span id="beta">alpha version</span></li>
-	  </ul>
-
+	
 </div>
       
 

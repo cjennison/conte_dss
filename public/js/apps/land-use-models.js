@@ -2,7 +2,9 @@ var land = Step.extend({
 	name:'land',
 	dom:'#land-use-models-app',
 	pctForest:50,
+	position:3,
 	preceded:['climate', 'barrier'],
+	managed:true,
 
 	start:function(){
 		this._super();
@@ -38,13 +40,28 @@ var land = Step.extend({
      			 	surfaceNumber.text(ui.value);
      			 }
    		 });
+		
+		emissions.change(function(){
+    			console.log($(this).val())
+    		});
+
+
+		
+	},
+
+	configureInputs:function(){
+		this._super();
+		var view=$(this.dom);
+
 		var pctCounter = view.find('.pctForest');
    		 var pctSlider = view.find('.forestSlider');
+		console.log("LAND CONF");
+		console.log(this.config);
     		pctSlider.slider({
-     		    max    : 100,
-	    	    min     : 0,
+     		    max    : this.config[1].input["pctForest"].max,
+	    	    min     : this.config[1].input["pctForest"].min,
 	    	    range   : 'min',
-	    	    value   : 50,
+	    	    value   : this.config[1].input["pctForest"].init,
 	    	    animate : 'fast',
      		    disabled:false,
      			 slide   : function (event, ui) {
@@ -52,12 +69,8 @@ var land = Step.extend({
      			 	Streams.app_control.apps.land.pctForest = ui.value;
      			 }
     		});
-		emissions.change(function(){
-    			console.log($(this).val())
-    		});
-
-
-
+		this.disableInputs();
+		
 	},
 
 
@@ -126,8 +139,8 @@ var land = Step.extend({
 
 	},
 
-	getInfo:function(){
-		var vars = this._super();
+	getInfo:function(source){
+		var vars = this._super(source);
 
 		var pctForest = this.pctForest;
 		var emissions = $('div#land-use-models-app.application div.app_content #emissions.styledSelect select');

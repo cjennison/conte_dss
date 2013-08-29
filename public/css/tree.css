@@ -7,7 +7,7 @@
 	
 	position:absolute;
 	width:100%;
-	height:305px;
+	height:246px;
 	opacity:0;
 	pointer-events:none;
 	bottom:100px;
@@ -120,6 +120,7 @@ line {
 a:link, a:visited {
   color: #000;
   text-decoration: none;
+  width: 116px
 }
 
 a:hover {
@@ -137,22 +138,73 @@ a:hover {
 #thumbnailList{
 	position: absolute;
 list-style-type: none;
-width: 1700px;
-bottom: 150px;
-left: 50%;
+width: 1600px;
+height: 200px;
+bottom: 87px;
+left: 40%;
 margin-left: -850px;
+position: absolute
 }
 
-#thumbnailList li{
+#thumbnailList #runModels{
+	left: 100%;
+	top: 75px;
+}
+
+#thumbnailList li {
+	position: absolute;	
+}
+
+#thumbnailList li ul{
+	position: absolute;	
+}
+
+#thumbnailList li ul .thumbnailImage{
 	display:inline-block;
 	margin-left:10px;
+	height: 170px;
+	width: 170px;
+	border: 1px solid black;
+	box-shadow: 1px 5px 15px 0px #4D4D4D;	
+	top: 15px;
+	position: absolute;
 }
+
+#thumbnailList li ul .thumbnailImage.skipped_run{
+	background-image : url('../images/skip_image.png');
+	background-size: 100% 100%;
+	border: none;
+	box-shadow: none;
+}
+
+#thumbnailList li ul .thumbnailImage.new_run{
+	background-image : url('../images/loading_gif.gif');
+	background-size: 200% 200%;
+	border: none;
+	background-position-y: -85px;
+background-position-x: -85px;
+	box-shadow: none;
+}
+
+#thumbnailList li ul .thumbnailImage #name{
+	text-align: center;
+	word-wrap: break-word;
+	font-weight: bold;	
+}
+
+#thumbnailList li ul .thumbnailImage #status{
+	text-align: center;
+	margin-top: 70px;	
+	font-size: 22px;
+	font-weight: bolder;
+}
+
 #thumbLabels{
 	position: absolute;
-	bottom: 262px;
+	bottom: 200px;
 	list-style-type: none;
 	width: 1400px;
-	left: 50%;
+	left: 40%;
 	margin-left: -700px;
 }
 

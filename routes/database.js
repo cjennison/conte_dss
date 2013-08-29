@@ -14,9 +14,14 @@ exports.getDatabase = function(req, res){
 
 exports.getAllRuns = function(req, res){
 	var username = req.session.user.name;
-	db.getAllRuns(username, function(data){
-		res.json({"runs":data})
-	})
+	if(username == null){
+		res.redirect("/");
+	} else {
+
+		db.getAllRuns(username, function(data){
+			res.json({"runs":data})
+		})
+	}
 }
 
 exports.getBarrierSettings = function(req, res){
@@ -36,9 +41,14 @@ exports.getUpdate = function(req, res){
 
 exports.checkUser = function(req, res){
 	var username = req.session.user.name;
-	db.checkUser(username, function(data){
-		res.json({"runs":data});
-	})
+	if(username == null){
+		res.redirect("/");
+	} else {
+		db.checkUser(username, function(data){
+			res.json({"runs":data});
+		})
+	}
+	
 }
 
 exports.updateUserTime = function(req, res){
