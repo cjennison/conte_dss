@@ -153,6 +153,7 @@ var Thumbnails = {
 
 					$(thumbnail).append("<p id=name>" + name + "</p>");
 					$(thumbnail).append("<p id=status> MODEL ERROR </p>");
+					return true;
 				}
 				else{
 					$(thumbnail).append("<p id=name>" + name + "</p>");
