@@ -14,7 +14,7 @@ var archiver = require('archiver');
 */ 
 exports.main = function (req, res) {
   if (req.session.user === undefined) {
-    res.redirect('/login');
+    res.redirect('/');
   }
   else {
   	//Render the main.ejs file with title and user as additional information. 
