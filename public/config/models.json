@@ -29,12 +29,12 @@
 			"script":"climate_shifted_historic",
 			"alias":"Shifted Historic Climate",
 			"class":"TIMESERIES_historic_and_modelled",
-			"disabled":false,
+			"disabled":true,
 			"input":{
 				"precip_graph":{
 					"type":"input_graph",
 					"variation":"variation",
-					"html":"<p>Precipitation - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%<br>- change in mean start year:  <input class='varstartNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='varendNumber' value='0'></input>%",
+					"html":"<p>Precipitation - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%<br>- change in variance in start year:  <input class='varstartNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='varendNumber' value='0'></input>%",
 					"min":-30,
 					"max":30,
 					"xAxis":"Year",
@@ -45,7 +45,7 @@
 				"temp_graph":{
 					"type":"input_graph",
 					"variation":"no_variation",
-					"html":"<p>Temperature - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%",
+					"html":"<p>Temperature - change in mean start year: <input class='startNumber' value='0'></input>C in end year<span class='enddate'></span>: <input class='endNumber' value='0'>C",
 					"min":-2,
 					"max":8,
 					"xAxis":"Year",
@@ -76,7 +76,7 @@
 				"precip_graph":{
 					"type":"input_graph",
 					"variation":"variation",
-					"html":"<p>Precipitation - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%<br>- change in mean start year:  <input class='varstartNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='varendNumber' value='0'></input>%",
+					"html":"<p>Precipitation - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%<br>- change in variance in start year:  <input class='varstartNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='varendNumber' value='0'></input>%",
 					"min":-30,
 					"max":30,
 					"xAxis":"Year",
@@ -87,7 +87,7 @@
 				"temp_graph":{
 					"type":"input_graph",
 					"variation":"no_variation",
-					"html":"<p>Temperature - change in mean start year: <input class='startNumber' value='0'></input>% in end year<span class='enddate'></span>: <input class='endNumber' value='0'>%",
+					"html":"<p>Temperature - change in mean start year: <input class='startNumber' value='0'></input>C in end year<span class='enddate'></span>: <input class='endNumber' value='0'>C",
 					"min":-2,
 					"max":8,
 					"xAxis":"Year",
@@ -109,11 +109,57 @@
 			]
 		},
 
-
 		{
-			"script":"gcm_downscaled",
+			"script":"gcm_single_timeseries",
 			"alias":"GCM Downscaled Projection",
 			"class":"TIMESERIES_historic_and_modelled",
+			"disabled":false,
+			"input":{
+				"scenario":{
+					"type":"dropdown",
+					"label":"Emissions Scenario (RCP)",
+					"options":[
+						"2.6",
+						"4.5",
+						"6.0",
+						"8.5"
+					]
+				},
+				"projection":{
+					"type":"dropdown",
+					"label":"CMIP5 Model",
+					"options":[
+						"bcc (csm1-1)", 
+						"ccsm4 (1)", 
+						"ccsm4 (2)", 
+						"gfdl (esm2g)", 
+						"gfdl (esm2m)", 
+						"ipsl (cm5a-lr)", 
+						"ipsl (cm5a-mr)", 
+						"miroc (esm)", 
+						"miroc (esm-chem)", 
+						"miroc5", 
+						"mri (cgcm3)", 
+						"noresm1 (m)"
+					]
+				}
+			},
+			"requirements":[
+				{
+					"step":"barrier",
+					"script":[
+						"BASIN",
+						null
+					]
+				}
+			
+			]
+		},
+
+		{
+			"script":"gcm_single_decadal_avg",
+			"alias":"GCM Downscaled Projections Across Space",
+			"class":"ZONAL_STATS",
 			"disabled":false,
 			"input":{
 				"scenario":{
@@ -314,7 +360,7 @@
 			"script":"abcde_reduced",
 			"alias":"abcde with Water Withdrawal",
 			"class":"TIMESERIES_preceeding_class",
-			"disabled":true,
+			"disabled":false,
 			"input":{
 				"pctReduced":{
 					"type":"SliderBar",
@@ -509,7 +555,7 @@
 		{
 			"script":"salmon_IPM_sensitivity",
 			"alias":"Salmon Population Growth Sensitivity",
-			"disabled":false,
+			"disabled":true,
 			"requirements":[
 				{
 					"step":"barrier",
